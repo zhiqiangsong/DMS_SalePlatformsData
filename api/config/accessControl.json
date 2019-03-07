@@ -1,0 +1,19 @@
+{
+	"wh":{
+		"bannedUrls": [
+			"/bxapi/sporeceipts/confirm.json"
+			,"/bxapi/sporeceipts/get-lot-release-table.json"
+			,"/bxapi/qrsmt/get-subcon-work-order-for-planner.json"
+			,"/bxapi/qrsmt/save-plan.json"
+			,"/bxapi/store-ops/consolidated-udi/get-pi-docs.json"
+			,"/bxapi/store-ops/consolidated-udi/confirm.json"
+		]
+	},
+	"planner":{
+		"allowedUrls": [
+			"/bxapi/sporeceipts/get-subcon-order-list.json"
+			,"/bxapi/qrsmt/get-subcon-work-order-for-planner.json"
+			,"/bxapi/qrsmt/save-plan.json"
+		]
+	}
+}

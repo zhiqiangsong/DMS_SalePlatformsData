@@ -1,0 +1,18 @@
+{
+	"bitsgLdapConfig":{
+		"url": "ldap://172.32.10.29",
+        "baseDN": "DC=bitsg,DC=bsi,DC=corp"
+	},
+	"besaLdapConfig":{
+		"url": "ldap://172.26.10.3",
+        "baseDN": "DC=besa,DC=bsi,DC=corp"
+	},
+	"bbvLdapConfig":{
+		"url": "ldap://172.27.10.5",
+        "baseDN": "DC=bbv,DC=bsi,DC=corp"
+	},
+	"jwmsLdapConfig":{
+		"url": "ldap://172.35.10.110",
+        "baseDN": "DC=jwms,DC=com"
+	}
+}

@@ -1,0 +1,26 @@
+[
+    {
+        "region":"东北大区",
+        "distributor":"阿玛格（北京）医疗器械有限公司",
+        "hospitalCode":"N.05.0188",
+        "hospitalName":"珲春市人民医院",
+        "promotionAmount":500,
+        "promotionDuration":"2018.7.1-12.31",
+        "sampleSubsidy":"以2000元价格四送一",
+        "sampleSubsidyDuration":"2018.7.1-12.31",
+        "surgicalDayActivity":"",
+        "surgicalDayActivityDuration":""
+    },
+    {
+        "region":"华东大区",
+        "distributor":"安徽省依之心医疗器械有限责任公司",
+        "hospitalCode":"S.02.0003",
+        "hospitalName":"上海东方医院及东方医院南院",
+        "promotionAmount":875,
+        "promotionDuration":"2018.1-12月375，7月改为875",
+        "sampleSubsidy":"",
+        "sampleSubsidyDuration":"2018.1-12月375，7月改为875",
+        "surgicalDayActivity":"买一赠一，共计20条",
+        "surgicalDayActivityDuration":"2018 4.1 -6.30"
+    }
+]

@@ -1,0 +1,169 @@
+.margin-auto-x{margin-left:auto;margin-right:auto;} 
+.margin-auto-y{margin-top:auto;margin-bottom:auto;} 
+.margin-auto{margin:auto;} 
+.margin-all{margin:10px;} 
+.margin-x { margin-left: 10px;margin-right: 10px}
+.margin-y { margin-top: 10px;margin-bottom: 10px}
+.margin-y-5 { margin-top: 5px;margin-bottom: 5px}
+.margin-y-20 { margin-top: 20px;margin-bottom: 20px}
+.margin-left { margin-left: 10px}
+.margin-right {margin-right: 10px}
+.margin-right-20 {margin-right: 20px}
+.margin-top { margin-top: 10px}
+.margin-bottom {margin-bottom: 10px!important}
+.margin-top-5 {margin-top: 5px}
+.margin-bottom-5 {margin-bottom: 5px!important}
+.margin-top-20 {margin-top: 20px}
+.margin-bottom-20 {margin-bottom: 20px}
+.no-margin-top {margin-top:0!important;}
+.no-padding-top {padding-top:0!important;}
+.no-padding-left {padding-left:0!important;}
+.no-padding-bottom {padding-bottom:0!important;}
+.no-padding-right {padding-right:0!important;}
+.no-border {border:0px solid transparent!important;}
+
+.padding-5{padding:5px;}
+.padding-all{padding:10px;}
+.padding-x { padding-left: 10px;padding-right: 10px}
+.padding-y { padding-top: 10px;padding-bottom: 10px}
+.padding-y-5 { padding-top: 5px;padding-bottom: 5px}
+.padding-x-20 { padding-left: 20px;padding-right: 20px}
+.padding-y-20 { padding-top: 20px;padding-bottom: 20px}
+.padding-left { padding-left: 10px}
+.padding-left-5 { padding-left: 5px}
+.padding-right {padding-right: 10px}
+.padding-right-5 {padding-right: 5px}
+.padding-top-20 { padding-top: 20px}
+.padding-top { padding-top: 10px}
+.padding-bottom {padding-bottom: 10px}
+
+
+.position-rel{position:relative;}
+.position-abs{position: absolute;}
+.on-top{top:0;}
+.on-vertical-middle{top:50%;}
+.on-bottom{bottom:0;}
+.on-left{left:0;}
+.on-right{right:0;}
+.full-width{width:100%!important;}
+.full-height{height:100%;}
+.half-width{width: 50%!important;}
+.half-height{height:50%;}
+.capitalized{text-transform: capitalize;}
+.text-left{text-align:left;}
+.text-right{text-align:right;}
+.text-center{text-align:center;}
+.bold{font-weight: bold}
+.inline-block{display: inline-block;}
+.block{display: block}
+.overflow-hidden{overflow: hidden;}
+.overflow-auto{overflow: auto;}
+.table-cell{display:table-cell}
+.cursor-pointer{cursor:pointer;}
+.clearboth{clear:both;}
+
+.dialog-header-error,.dialog-header-danger { background-color: #d2322d; }
+.dialog-header-success { background-color: #428bca; }
+.dialog-header-notify { background-color: #eeeeee; }
+.dialog-header-confirm { background-color: #333333; }
+  .dialog-header-error span, .dialog-header-error h4,.dialog-header-danger h4,
+  .dialog-header-success span, .dialog-header-success h4,
+  .dialog-header-confirm span, .dialog-header-confirm h4 { color: #ffffff; }
+
+  /*google fonts*/
+  .poiret-one{
+	font-family: 'Poiret One', arial;
+}
+.ubuntu{
+	font-family: 'Ubuntu', sans-serif;
+}
+.tangerine{
+	font-family: 'Tangerine', arial;
+}
+
+/*side nav*/
+ body {
+    overflow-x: hidden;
+ }
+
+/* Toggle Styles */
+
+#wrapper {
+    position: relative;
+}
+
+
+#sidebar-wrapper {
+    margin-left: -210px;
+}
+#page-content-wrapper{
+	padding:20px;
+	margin-top:30px;
+}
+
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 90px;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #EEE;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #000;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+.jm .bg-highlight{
+    background-color: yellow;
+    color: #333333;
+}
+
+@media(max-width:1160px) {
+    #sidebar-wrapper .sidebar-nav{
+        margin-left:-220px;
+    }
+
+}

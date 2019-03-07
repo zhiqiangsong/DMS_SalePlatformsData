@@ -1,0 +1,31 @@
+    <div class="modal-header dialog-header-confirm">
+      <button type="button" class="close" ng-click="$dismiss()">
+        ×
+      </button>
+      <h4 class="modal-title">
+        <span class="glyphicon glyphicon-check">
+        </span>
+        Please Confirm
+      </h4>
+    </div>
+    <div class="modal-body font-16 text-info" ng-if="!confirmMessage">
+      Are you sure to {{actionOperate}} <span ng-if="itemName">"{{itemName}}"</span>?
+    </div>
+    <div class="modal-body font-16 text-info" ng-if="confirmMessage">
+      <div ng-repeat="msg in confirmMessage">
+        {{msg}}
+      </div>
+      <!-- <div class="checkbox" ng-if="errClass===14">
+        <label>
+          <input type="checkbox" ng-model="temp.doNotConfirmForUnscan"> Do not confirm the unscan during this session
+        </label>
+      </div> -->
+    </div>
+    <div class="modal-footer text-center">
+      <button type="button" class="btn btn-default" ng-click="yes()">
+        Confirm
+      </button>
+      <button type="button" class="btn btn-primary" ng-click="$dismiss()">
+         Cancel
+      </button>
+    </div>

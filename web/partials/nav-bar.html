@@ -1,0 +1,96 @@
+<nav class="navbar  navbar-fixed-top" role="navigation" scroll ng-controller="navCtrl">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header navbar-inverse" ng-init="menu={showSub:''}">
+
+        <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="#/home" active-link="active"> 
+        <div class="navbar-brand primary">
+        <span class="block pull-left company-logo"></span> 
+        <span class="tangerine pull-left block margin-left">
+          <span class="highlight-letter">吉威医疗</span>
+        </span> 
+        </div> 
+      </a> 
+
+      </div>
+    
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-inverse" ng-class="!navCollapsed && 'in'" ng-click="navCollapsed=true">
+      
+        <ul class="nav navbar-nav" ng-hide="boolChangeClass"> 
+          <li>{{scroll}}</li>
+          <li> 
+            <a href="#/report" active-link="active" > 
+              报表
+            </a> 
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right padding-right">
+           <li ng-show="!authUser"> 
+            <a class="cursor-pointer" ng-click="login()">
+              <span class="fa fa-sign-in fa-lg"></span>
+              登录
+            </a>
+          </li>
+          <li class="dropdown" dropdown ng-show="authUser">
+              <a href="#" class="dropdown-toggle" dropdown-toggle>
+                  <span class="fa fa-user-circle-o fa-lg" title="{{authUser.DefaultWH}}"></span>
+                  {{authUser.userName}}
+              </a>
+              <ul class="dropdown-menu user-profile">
+                <li class="text-center">所在域: <strong>{{authUser.Domain}}</strong></li>
+                <li class="text-center">用户 ID: <strong>{{authUser.UserID}}</strong></li>
+                <li class="text-center">用户角色: <strong>{{authUser.UserRole}}</strong></li>
+                <li class="text-center">用户姓名: <strong>{{authUser.userName}}</strong></li>
+              </ul>
+            </li>
+            <li class="dropdown" dropdown>
+              <a href="#" class="dropdown-toggle" dropdown-toggle><span class="glyphicon glyphicon-cog"></span> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <!--removeIf(production)-->
+                <li>
+                  <a role="button" ng-href="" ng-click="toggleDebug()">
+                    Debug
+                    <span class="glyphicon glyphicon-ok pull-right text-muted" ng-show="debug"></span> 
+                  </a>
+                </li>
+                <!--endRemoveIf(production)-->
+                <li ng-show="authUser&&(authUser.UserRole.indexOf('Admin')!==-1)"> 
+                  <a href="#/admin" active-link="active">
+                    <span class="fa fa-universal-access fa-lg"></span>
+                    用户管理
+                  </a>
+                </li>
+                <li ng-show="authUser&&(authUser.UserRole==='superAdmin'||authUser.UserRole==='tech')"> 
+                  <a href="#/view-error-log" active-link="active">
+                    <span class="fa fa-file-text-o fa-lg"></span>
+                    错误日志
+                  </a>
+                </li>                
+                <li ng-show="authUser&&(authUser.UserRole==='superAdmin'||authUser.UserRole==='tech')"> 
+                  <a href="#/view-info-log" active-link="active">
+                    <span class="fa fa-file-text-o fa-lg"></span>
+                    操作日志
+                  </a>
+                </li>   
+                <li ng-show="authUser">
+                    <a href="#/home" ng-click="logout()">
+                      <span class="fa fa-sign-out fa-lg"></span>
+                      注销
+                    </a>
+                  </li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+      <div class="padding-x padding-y-5">
+          <alert ng-repeat="alert in pageParts.alerts" type="{{alert.type}}" close="closeAlert($index)">
+            {{alert.msg}}
+          </alert>
+        </div>
+    </nav>

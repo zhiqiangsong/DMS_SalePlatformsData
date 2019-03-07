@@ -1,0 +1,35 @@
+
+	<form role="form" name="loginForm">
+		<div class="alert alert-danger" ng-show="login.errMsg">
+			<i class="glyphicon glyphicon-warning-sign" style="color:red"></i>
+			{{login.errMsg}}
+		</div>
+	  <div class="form-group">
+	  	<label class="block" for="domain">请选择域名</label>
+	    <div class="col-sm-4 no-padding-x margin-bottom">
+			<select class="chosen-select col-sm-12 form-control"
+					ng-model="login.domain"
+					name="domain"
+					ng-options="item as item for item in ['BITSG','JWMS','BESA','BBV']"
+					>
+					<option value="">选择域名</option>
+			</select>
+		</div>
+		</div>
+		<div class="form-group">
+	    <label class="block clearboth" for="username">用户名</label>
+			<input type="text" class="form-control" id="username" placeholder="用户名" 
+						ng-model="login.username" autocomplete="on">
+	  </div>
+	  <div class="form-group">
+	    <label for="password">密码</label>
+			<input type="password" class="form-control" id="password" placeholder="密码" 
+			ng-model="login.password"  autocomplete="new-password">
+	  </div>
+	  <button type="submit" class="btn btn-default" ng-click="submitForm()" ng-disabled="!login.domain||!login.username||!login.password">提交</button>
+	</form>
+
+	<pre ng-show="debug">login:{{login | json}}</pre>	
+
+
+

@@ -1,0 +1,22 @@
+
+<div class="" style="padding:30px;margin-top:20px">
+  <!-- <h1 class="text-center">Biosensors Interventional Technologies Pte Ltd</h1>
+  <h2 class="text-center">Welcome to jm system</h2> -->
+  <div class="well">
+  		<h2 class="text-center">欢迎进入吉威医疗信息服务系统</h2>
+  </div>
+  <!-- <h3>Guide for User Interface Experience Test</h3> -->
+  <ol class="guide" style="font-size: 20px">
+  	<li>网址: <a href="{{url}}">{{url}}</a></li>
+	  
+  	<li>数据库连接信息
+	  <ul>
+	  	<li>服务器: {{dbInfo.sqlSvrInfo.server}}</li>
+	  	<li>数据库: {{dbInfo.sqlSvrInfo.database}}</li>
+	  	<li>数据库用户名: {{dbInfo.sqlSvrInfo.user}}</li>
+    </ul>
+  </li>
+  </ol>
+</div>
+
+<pre ng-show="debug">dbInfo:{{dbInfo | json}}</pre>	

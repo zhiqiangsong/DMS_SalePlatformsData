@@ -1,0 +1,65 @@
+{
+  "name": "jwms-mvc",
+  "version": "1.0.0",
+  "description": "build RESTFUL api app for JWMS",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "dev": "nodemon server.js",
+    "qa": "nodemon server.js PORT=8081"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Biosensors/jwms-mvc.git"
+  },
+  "keywords": [
+    "Biosensors",
+    "jwms-mvc",
+    "api"
+  ],
+  "author": "Yadong Zhu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Biosensors/jwms-mvc/issues"
+  },
+  "homepage": "https://github.com/Biosensors/jwms-mvc#readme",
+  "dependencies": {
+    "Promise": "^1.0.5",
+    "activedirectory": "^0.7.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "winston": "^2.4.2",
+    "mssql": "^4.1.0",
+    "reverse-line-reader": "^0.2.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.6.0",
+    "gulp-clean": "latest",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-concat": "^2.4.3",
+    "gulp-git": "^2.7.0",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-json-editor": "^2.4.1",
+    "gulp-jsonminify": "^1.1.0",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-ng-annotate": "^0.4.3",
+    "gulp-remove-code": "^1.0.2",
+    "gulp-remove-empty-lines": "0.0.2",
+    "gulp-replace": "^0.5.2",
+    "gulp-strip-line": "0.0.1",
+    "gulp-uglify-es": "^1.0.4",
+    "gulp-util": "^3.0.3",
+    "gulp-wait2": "0.0.5",
+    "jasmine-core": "^3.3.0",
+    "karma": "^2.0.5",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.2",
+    "minimist": "^1.1.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.4",
+    "reload": "^2.3.0",
+    "yargs": "^11.1.0"
+  }
+}

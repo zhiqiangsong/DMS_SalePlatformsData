@@ -1,0 +1,36 @@
+[
+    {
+        "No":1,
+        "businessMgr":"徐欣",
+        "region":"东北大区",
+        "companyName":"阿玛格（北京）医疗器械有限公司",
+        "remark":"",
+        "relation":"L1",
+        "status":"正常",
+        "agencyAmountIndicator":0,
+        "purchasePrice":3500,
+        "rebateDiscount":0.94,
+        "discountPrice":3290,
+        "tenderPriceDeduct":300,
+        "netPrice":32900,
+        "ifNewDevelopment":"降价补偿/新医院开发二选一",
+        "durationOfImplement":"2018.1.1-2018.12.31"
+    },
+    {
+        "No":2,
+        "businessMgr":"祁明",
+        "region":"华东大区",
+        "companyName":"安徽省依之心医疗器械有限责任公司",
+        "remark":"",
+        "relation":"L1",
+        "status":"正常",
+        "agencyAmountIndicator":0,
+        "purchasePrice":3500,
+        "rebateDiscount":0.94,
+        "discountPrice":3290,
+        "tenderPriceDeduct":300,
+        "netPrice":32900,
+        "ifNewDevelopment":"降价补偿/新医院开发二选一",
+        "durationOfImplement":"2018.1.1-2018.12.31"
+    }
+]

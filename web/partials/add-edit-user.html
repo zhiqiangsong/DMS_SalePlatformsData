@@ -1,0 +1,108 @@
+<div class="modal-header dialog-header-confirm">
+  <button type="button" class="close" ng-click="$dismiss()">
+    <i class="fa fa-times fa-lg"></i>
+  </button>
+  <div class="modal-title">
+    <span class="fa fa-university"></span>
+    <span>{{(type==='Edit')?"编辑":"添加"}}用户</span>
+  </div>
+</div>
+<form class="form-horizontal" role="form" name="myForm" novalidate class="jm" ng-class="{submitted:submitted}">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="col-sm-7 col-sm-offset-3 error ng-binding" ng-if='error'>
+          <i class="fa fa-minus-circle"></i> {{error.text}}
+        </div>
+        
+        <div class="form-group" ng-class="{'has-error':duplicateUserID}">
+          <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 用户ID </label>
+          <div class="col-sm-6">
+               <input type='text' class='col-sm-12 form-control'
+                               name='UserID'
+                               ng-required="true"
+                               ng-keyup="uniqueValidation()"
+                               class='full-width form-control'
+                               ng-class="{'submitted':submitted,'error':(!user.UserID)}"
+                               ng-model="user.UserID"
+                               placeholder="用户ID"
+                               autocomplete="off" ng-if="type==='Add'">
+                <div ng-if="type==='Edit'" class="margin-top-5" style="font-size:16px;font-weight:bold">{{user.UserID}}</div>
+          </div>
+          <label class="col-sm-3 no-margin-x margin-top-5" for="name" ng-show="duplicateUserID"> 用户ID已经存在</label>
+        </div>
+   
+          <div class="form-group" >
+              <label class="col-sm-3 control-label no-padding-right field-required" for="role"> 所在域:</label>
+              <div class="col-sm-6">
+                  <select class="chosen-select col-sm-12 form-control"
+                      ng-model="user.Domain"
+                      name="domain"
+                      ng-options="item as item for item in ['BITSG','JWMS','BESA','BBV']"
+                      >
+                      <option value="">选择所在域</option>
+                  </select>
+                  <!-- <div ng-if="authUser.UserRole!=='superAdmin'" class="margin-top-5" style="font-size:16px;font-weight:bold">{{user.UserRole}}</div> -->
+              </div>
+            </div>             
+        <div class="form-group">
+          <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 用户姓名</label>
+          <div class="col-sm-6">
+               <input type='text' class='col-sm-6 form-control'
+                               name='userName'
+                               ng-required="true"
+                               class='full-width form-control'
+                               ng-class="{'submitted':submitted}"
+                               ng-model="user.userName"
+                               placeholder="用户姓名">
+          </div>
+          <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+        </div>
+        <div class="form-group" >
+          <label class="col-sm-3 control-label no-padding-right field-required" for="role"> 用户角色:</label>
+          <div class="col-sm-6">
+              <select class="chosen-select col-sm-12 col-xs-12 form-control"
+                  ng-model="user.UserRole"
+                  name="role"
+                  ng-options="item as item for item in userRoles"
+                  ng-if="authUser.UserRole==='superAdmin'"
+                  >
+                  <option value="">选择用户角色</option>
+              </select>
+              <div ng-if="authUser.UserRole!=='superAdmin'" class="margin-top-5" style="font-size:16px;font-weight:bold">{{user.UserRole}}</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 状态 </label>
+          <div class="col-sm-6">
+              <div class="radio">
+                  <label style="color:#4cae4c">
+                    <input type="radio" ng-model="user.isActive" value="1"> Active
+                  </label>
+
+                  <label style="color:#d43f3a;margin-left:10px" >
+                    <input type="radio" ng-model="user.isActive" value="0"> Inactive
+                  </label>
+                </div>
+          </div>
+        </div>
+        <div class="clearboth"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer text-center">
+    <button type="submit" class="btn btn-primary" ng-click="submit()" 
+      ng-disabled="!user.UserID||!user.userName||!user.isActive||duplicateUserID">
+      提交
+    </button>
+    <button type="button" class="btn btn-default" ng-click="reset()">
+      重置
+    </button>
+    <button type="button" class="btn btn-default" ng-click="$dismiss()">
+      取消
+    </button>
+  </div>
+</form>
+<pre ng-show="debug">{{user|json}}</pre >

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name=viewport
+  content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
+  <style>
+    [ng-cloak] {
+      display: none;
+    }
+  </style>
+  <script>
+    // include angular loader, which allows the files to load in any order
+    //@@NG_LOADER_START@@
+/*
+ AngularJS v1.3.1
+ (c) 2010-2014 Google, Inc. http://angularjs.org
+ License: MIT
+*/
+(function(){'use strict';function d(b){return function(){var c=arguments[0],e;e="["+(b?b+":":"")+c+"] http://errors.angularjs.org/1.3.1/"+(b?b+"/":"")+c;for(c=1;c<arguments.length;c++){e=e+(1==c?"?":"&")+"p"+(c-1)+"=";var d=encodeURIComponent,a;a=arguments[c];a="function"==typeof a?a.toString().replace(/ \{[\s\S]*$/,""):"undefined"==typeof a?"undefined":"string"!=typeof a?JSON.stringify(a):a;e+=d(a)}return Error(e)}}(function(b){function c(a,c,b){return a[c]||(a[c]=b())}var e=d("$injector"),n=d("ng");
+b=c(b,"angular",Object);b.$minErr=b.$minErr||d;return c(b,"module",function(){var a={};return function(b,d,g){if("hasOwnProperty"===b)throw n("badname","module");d&&a.hasOwnProperty(b)&&(a[b]=null);return c(a,b,function(){function a(b,d,e,f){f||(f=c);return function(){f[e||"push"]([b,d,arguments]);return h}}if(!d)throw e("nomod",b);var c=[],k=[],l=[],m=a("$injector","invoke","push",k),h={_invokeQueue:c,_configBlocks:k,_runBlocks:l,requires:d,name:b,provider:a("$provide","provider"),factory:a("$provide",
+"factory"),service:a("$provide","service"),value:a("$provide","value"),constant:a("$provide","constant","unshift"),animation:a("$animateProvider","register"),filter:a("$filterProvider","register"),controller:a("$controllerProvider","register"),directive:a("$compileProvider","directive"),config:m,run:function(a){l.push(a);return this}};g&&m(g);return h})}})})(window)})(window);
+//# sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map
+
+//@@NG_LOADER_END@@
+
+    // include a third-party async loader library
+    /*!
+     * $script.js v1.3
+     * https://github.com/ded/script.js
+     * Copyright: @ded & @fat - Dustin Diaz, Jacob Thornton 2011
+     * Follow our software http://twitter.com/dedfat
+     * License: MIT
+     */
+    !function(a,b,c){function t(a,c){var e=b.createElement("script"),f=j;e.onload=e.onerror=e[o]=function(){e[m]&&!/^c|loade/.test(e[m])||f||(e.onload=e[o]=null,f=1,c())},e.async=1,e.src=a,d.insertBefore(e,d.firstChild)}function q(a,b){p(a,function(a){return!b(a)})}var d=b.getElementsByTagName("head")[0],e={},f={},g={},h={},i="string",j=!1,k="push",l="DOMContentLoaded",m="readyState",n="addEventListener",o="onreadystatechange",p=function(a,b){for(var c=0,d=a.length;c<d;++c)if(!b(a[c]))return j;return 1};!b[m]&&b[n]&&(b[n](l,function r(){b.removeEventListener(l,r,j),b[m]="complete"},j),b[m]="loading");var s=function(a,b,d){function o(){if(!--m){e[l]=1,j&&j();for(var a in g)p(a.split("|"),n)&&!q(g[a],n)&&(g[a]=[])}}function n(a){return a.call?a():e[a]}a=a[k]?a:[a];var i=b&&b.call,j=i?b:d,l=i?a.join(""):b,m=a.length;c(function(){q(a,function(a){h[a]?(l&&(f[l]=1),o()):(h[a]=1,l&&(f[l]=1),t(s.path?s.path+a+".js":a,o))})},0);return s};s.get=t,s.ready=function(a,b,c){a=a[k]?a:[a];var d=[];!q(a,function(a){e[a]||d[k](a)})&&p(a,function(a){return e[a]})?b():!function(a){g[a]=g[a]||[],g[a][k](b),c&&c(d)}(a.join("|"));return s};var u=a.$script;s.noConflict=function(){a.$script=u;return this},typeof module!="undefined"&&module.exports?module.exports=s:a.$script=s}(this,document,setTimeout)
+
+    // load all of the dependencies asynchronously.
+		$script([
+	      'bower_components/angular/angular.min.js',
+	    ], function() {
+	      $script([
+	      'bower_components/angular-route/angular-route.min.js',
+	      'bower_components/angular-animate/angular-animate.min.js',
+	      'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+	      'bower_components/angular-resource/angular-resource.min.js',
+        'bower_components/angular-sanitize/angular-sanitize.min.js',
+        'bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js',
+        'bower_components/angular-local-storage/dist/angular-local-storage.min.js',
+        //minify js place holder
+        'js/app.js'
+        ],function(){
+          $script([//remove place holder
+            'js/app/app.http-provider.js',
+            'js/app/app.route-main.js',
+            'js/app/app.run.js',
+            'js/controllers/loginCtrl.js',
+            'js/controllers/footerCtrl.js',
+            'js/controllers/homeCtrl.js',
+            'js/controllers/navCtrl.js',
+            'js/controllers/adminCtrl.js',
+            'js/controllers/viewLogCtrl.js',
+            'js/controllers/addEditUserCtrl.js',
+            'js/controllers/performanceReportCtrl.js',
+            'js/services/services.js',
+            'js/services/authService.js',
+    	      'js/services/modalLogin.js',
+    	      'js/filters/filters.js',
+            'js/directives/directives.js',
+          ], function() { //remove place holder
+            angular.bootstrap(document, ['jm']);
+          }); //remove place holder
+        });
+      });
+  </script>
+  <title>JWMS MVC</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/jm.css">
+  <!-- compact css place holder -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.css">
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+</head>
+<body ng-cloak class="jm">
+  <div class="page-mask" ng-show="pageLoading"></div>
+    <div ng-include src="'partials/nav-bar.html'"></div>
+    
+      <div ng-view class="main-view"></div>
+      <img src="media/loading_rwd.gif" alt="" class="page-loading" ng-show="pageLoading">
+      
+      <div class="footer ubuntu text-muted" ng-controller="footerCtrl">
+        <span>&copy; {{currentDate| date:'yyyy'}} 吉威医疗</span>
+      </div>
+
+
+</body>
+</html>

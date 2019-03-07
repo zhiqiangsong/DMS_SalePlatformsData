@@ -1,0 +1,301 @@
+
+html,body {
+  height:100%; /* needed for container min-height */
+}
+.page-mask{
+	background-color: white;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+    position: fixed;
+    z-index: 10000;
+}
+.nav .dropdown{
+	margin-right:15px;
+}
+.jm .page-loading{
+	position: fixed;
+	top: 40%;
+	left: 45%;
+	max-width: 120px;
+}
+.jm .navbar-inverse .navbar-collapse, 
+.jm .navbar-inverse .navbar-form{
+	background-color: #337ab7;
+	border-color: #2e6da4;
+}
+.nav.navbar-nav li a.active {
+	background-color: #2e6da4;
+	color: #EEE;
+}
+.jm .navbar-inverse{
+	background-color: #337ab7;
+	border-color: #2e6da4;
+}
+.jm .navbar-inverse .navbar-nav>li>a{
+	color:#DDD;
+	font-size:17px;
+	font-weight: bold
+}
+.navbar-inverse .navbar-brand.primary{
+	font-size: 22px;
+	color:#FFF;
+}
+.jm .navbar-brand {
+	line-height: 30px;
+}
+.jm .subnav .navbar-nav>li>a {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.jm .navbar-brand.primary{
+	padding:10px 15px;
+}
+.jm .subnav .nav.navbar-nav li a.active {
+	background-color: #5bc0de;
+	color: #EEE;
+}
+.jm .subnav {
+	padding-left:90px;
+	background-color: #EEE;
+	border-top: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+}
+
+.main-view {
+  padding:60px 10px 0 10px;
+  width:100%;
+  display: table;
+  /* max-width: 768px; */
+  margin:auto;
+  font-family: 'Ubuntu', sans-serif;
+  height: calc(100% - 40px);
+  height:-moz-calc(100% - 40px);
+}
+.main-view h1{
+	/*font-family: 'Poiret One', cursive;*/
+	font-family: serif;
+}
+.search-box input {
+	padding-left: 30px;
+}
+.search-box .glyphicon-search {
+	top:10px;
+	left:10px;
+	position: absolute;
+}
+.shortcut-symbols{
+	color:brown;
+	font-weight: bold;
+	font-size: 18px;
+}
+.footer {
+	background-color: #CCC;
+	margin:auto;
+	text-align: center;
+	height: 40px;
+	line-height: 40px
+}
+
+
+.loginHeader{
+  background-color: #333;
+  color: #fff;
+}
+
+.loginHeader .modalClose{
+  color: #efefef;
+}
+.info-header{
+  background-color: #333;
+  color: #fff;
+}
+
+.info-header .modalClose{
+  color: #efefef;
+}
+
+
+.modalClose{
+position: absolute;
+top: 0;
+right: 0;
+font-size: 1.5em;
+text-align: center;
+background:none;
+border:none;
+}
+
+.content-wrapper{
+  padding:20px;
+}
+
+form .form-group.err-msg{
+  margin-bottom:10px;
+}
+form .error.alert{
+  padding:5px;
+}
+form.form select{
+  width:100px;
+}
+.submitted input.ng-invalid{border-color:red;}
+
+
+.jm .jm-indent{
+	margin-top: 20px;
+	text-indent: 30px;
+}
+
+.jm .navbar-inverse .navbar-toggle {
+    border-color: #ccc;
+}
+
+.jm .no-padding-x {padding-left: 0px; padding-right: 0px}
+.jm .hu.nav-tabs>li{
+	margin-bottom: -2px;
+	margin-top:10px;
+}
+.jm .hu.top-nav.nav-tabs>li>a.active{
+	border-left: 1px solid #CCC;
+	border-top: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #FFF
+}
+.jm .hu.nav-tabs>li>a{
+	border: 1px solid #CCC
+}
+.jm .hu.nav-tabs>li>a.add-button{
+	background-color: #5cb85c;
+    color: white;
+    padding: 3px 5px;
+    margin-top: 14px;
+}
+.jm .modal-footer.text-center{text-align:center;}
+
+.jm form .error{
+	  color: rgb(210, 10, 17);
+  font-size: 12px;
+  padding: 10px 0;
+}
+
+.jm input.error{
+	font-size:14px;
+  padding: 10px 12px;
+}
+
+.jm .hu-highlight {
+	background-color: #d9edf7;
+	
+}
+.jm .auto-expand.dropdown:hover {
+        background-color: #222;
+    }
+.jm .auto-expand.dropdown:hover .dropdown-menu {
+        display: block;
+    }
+.jm .company-logo{
+	background-image: url("/media/logo.bsi.long.svg");
+	width: 26px;
+    height: 26px;
+    background-color: #FFF;
+    background-position-x: 0px;
+    background-position-y: -1px;
+    margin-top: 2px;
+}
+.jm .letter{
+	margin-left: -6px;
+    margin-right: -6px;
+    color: #BBB;
+}
+.jm .panel-head div{
+	background-color: #337ab7;
+	padding:10px 0;
+	color:#EEE;
+	text-align: center;
+	margin-bottom:10px;
+}
+.jm a.accordion-toggle{
+	cursor: pointer;
+	text-decoration: none;
+}
+.jm .scan-item .panel-body{
+	padding:0;
+}
+.jm .scan-panel .form-group{
+	margin-bottom: 0px;
+}
+
+.jm .has-error label{
+	color:#a94442;
+}
+
+.jm table.scan-item{
+	margin-bottom: 0px;
+}
+
+.jm .scan-item.full .panel-heading:hover,
+.jm .scan-item.full .panel-heading{
+	background-color: #5cb85c;
+	color:#EEE;
+}
+.jm .scan-item.warn .panel-heading:hover,
+.jm .scan-item.warn .panel-heading{
+    color: #a94442;
+    background-color: #f2dede;
+}
+
+.jm .scan-item .panel-heading:hover{
+	background-color:#DDD;
+}
+.jm .panel-default.quar-plan .panel-body{
+	padding-left:2px;
+	padding-right:2px;
+	padding-bottom: 0px
+}
+
+
+  	.jm .hover-table{
+		width:100%; 
+		border-collapse:collapse; 
+	}
+
+	/* Define the hover highlight color for the table row */
+    .jm .hover-table tr:hover {
+		background-color: #dff0d8;
+    }
+
+	.jm .qty-option-toggle .toggle{
+		width:114px!important;
+		margin-top:10px
+	}
+	.jm .counter{
+		margin-bottom: 0;
+		margin-top: 5px;
+		font-size: 35px;
+		line-height: 1;
+		color: #C76C6C;
+		letter-spacing: -1px;
+	}
+	.jm .form-control[readonly]{
+		background-color: #FFF;
+	}
+
+@media only screen and (max-width: 1180px) {
+	.jm .letter{display:none;}
+	.jm .highlight-letter {
+		margin-left:-5px;
+	}
+} 
+
+@media only screen and (max-width: 768px) {
+	.jm .nav.navbar-nav{
+		font-size:20px;
+	}
+	.jm table.scan-item tr.form-group td.lable{
+		width:25%;
+	}
+	.jm table.scan-item tr.form-group td.input{
+		width:75%;
+	}
+} 

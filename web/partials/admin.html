@@ -1,0 +1,80 @@
+<h2 class="text-center" style="padding-top:60px">用户管理</h2>
+	<div class="margin-top-20" style="padding:30px 0 10px 0">
+        <table class="table padding-top table-striped border">
+            <thead> 
+                <tr>
+                <th class="text-center">
+                    <a class="cursor-pointer" ng-click="sortType = 'UserID'; sortReverse = !sortReverse">
+                    用户 ID
+                    <span ng-show="sortType == 'UserID' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'UserID' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th class="text-center">
+                    <a class="cursor-pointer" ng-click="sortType = 'userName'; sortReverse = !sortReverse">
+                    用户姓名
+                    <span ng-show="sortType == 'userName' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'userName' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th class="text-center">
+                    <a class="cursor-pointer" ng-click="sortType = 'Domain'; sortReverse = !sortReverse">
+                    所在域
+                    <span ng-show="sortType == 'Domain' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'Domain' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th class="text-center">
+                    <a class="cursor-pointer" ng-click="sortType = 'UserRole'; sortReverse = !sortReverse">
+                    用户角色
+                    <span ng-show="sortType == 'UserRole' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'UserRole' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th class="text-center">
+                    <a class="cursor-pointer" ng-click="sortType = 'Status'; sortReverse = !sortReverse">
+                    状态
+                    <span ng-show="sortType == 'Status' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'Status' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th class="text-center">
+                    操作
+                </th>
+                <!-- <td width="10%" class="text-center">Action</td> -->
+                    
+                </tr>
+            </thead> 
+            <tbody> 
+                <tr ng-if="userList&&userList.length>0" 
+                    ng-repeat="(idx,user) in userList | orderBy:sortType:sortReverse|filter:{UserRole:roleFilter}">
+
+                <td width="16%" class="text-center">{{user.UserID}}</td>
+                <td width="16%" class="text-center">{{user.userName}}</td>
+                <td width="16%" class="text-center">{{user.Domain}}</td>
+                <td width="16%" class="text-center">{{user.UserRole}}</td>
+                <td width="16%" class="text-center">{{(user.isActive==='1')?'Active':'Inactive'}}</td>
+                <td width="16%" class="text-center">
+                    <button type="button" class="btn btn-info btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1" ng-click="addOrEditUser(user)">
+                        编辑 
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1" confirm-required="{{user.UserID}}" 
+                            ng-click="deleteUser(user)">
+                        删除 
+                    </button>
+                </td>
+            </tr>
+            <tr ng-if="!userList||userList.length==0">
+                <td colspan="4" class='empty-message'>没有用户.</td>
+            </tr>
+            </tbody> 
+        </table>
+        <div class="margin-top text-center">
+            <button type="button" class="btn btn-success" ng-click="addOrEditUser()">
+                <span class="fa fa-plus-circle fa-lg"></span>
+                添加用户
+            </button>
+        </div>
+    </div>
+
+    <pre ng-show="debug">userList:{{userList | json}}</pre>	

@@ -1,0 +1,63 @@
+<h2 class="text-center" style="padding-top:60px" 
+    ng-class="{'text-danger':logType==='error','text-info':logType==='info'}">{{::title}}</h2>
+	<div class="margin-top-20" style="padding:30px 0 10px 0">
+        <table class="table padding-top table-striped border">
+            <thead> 
+                <tr>
+                <th ng-class="{'text-danger':logType==='error','text-info':logType==='info'}">序号</th>
+                <th class="text-center">
+                    <a class="cursor-pointer" ng-click="sortType = 'timestapm'; sortReverse = !sortReverse"
+                    ng-class="{'text-danger':logType==='error','text-info':logType==='info'}"
+                    >
+                    时间
+                    <span ng-show="sortType == 'timestapm' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'timestapm' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th class="text-center">
+                    <a class="cursor-pointer" ng-click="sortType = 'bapiName'; sortReverse = !sortReverse"
+                    ng-class="{'text-danger':logType==='error','text-info':logType==='info'}"    
+                    >
+                    信息标题
+                    <span ng-show="sortType == 'bapiName' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'bapiName' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th class="text-center">
+                    <a class="cursor-pointer" ng-click="sortType = 'error.code'; sortReverse = !sortReverse"
+                    ng-class="{'text-danger':logType==='error','text-info':logType==='info'}">
+                    信息分类
+                    <span ng-show="sortType == 'error.code' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'error.code' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th class="text-center" ng-class="{'text-danger':logType==='error','text-info':logType==='info'}">
+                    操作
+                </th>
+                </tr>
+            </thead> 
+            <tbody> 
+                <tr ng-if="logs&&logs.length>0" 
+                    ng-repeat="(idx,log) in logs | orderBy:sortType:sortReverse">
+
+                <td width="5%" class="text-center">{{idx+1}}</td>
+                <td width="30%" class="text-center">{{log.timestamp|localDatetime}}</td>
+                <td width="30%" class="text-center">{{log.bapiName||log.loginUser}}</td>
+                <td width="25%" class="text-center">{{(log.bapiName)?'BAPI':'USER'}}</td>
+                <td width="10%" class="text-center">
+                    <button type="button" class="btn btn-xs" 
+                    ng-class="{'btn-danger':logType==='error','btn-info':logType==='info'}"
+                    ng-click="viewDetail(log)">
+                        查看日志详细
+                    </button>
+                </td>
+            </tr>
+            <tr ng-if="!logs||logs.length==0">
+                <td colspan="4" class='empty-message'>没有日志.</td>
+            </tr>
+            </tbody> 
+        </table>
+       
+    </div>
+
+    <pre ng-show="debug">logs:{{logs | json}}</pre>	
