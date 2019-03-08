@@ -45,6 +45,16 @@ exports.getPerformanceReport=function(req,res){
 		}
 	})()
 };
+exports.getProductTypeList=function(req,res){
+	(async function () {
+		try {
+			var list = await dbCommonSvc.getProductTypeList();
+			return res.status(200).send(list.recordset);
+		} catch (error) {
+			return res.status(200).send({error:true,message:error.message});
+		}
+	})()
+};
 exports.viewLog=function(req,res){
 	var lineReader = require('reverse-line-reader');
 	var maxLine = 300;

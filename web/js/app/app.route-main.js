@@ -38,6 +38,49 @@
                         }]
                 }
             })
+            .when('/dealerSalesData', {
+                templateUrl: 'partials/dealerSalesData-report.html',
+                controller: 'dealerSalesDataCtrl',
+                resolve:{
+                    productTypeList:['$q','$route','jmService','utilSvc',
+                            function($q,$route,apiSvc,util){
+                                var deferred = $q.defer();
+                                apiSvc.getProductType().$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                },function(err){
+                                    deferred.reject(err);
+                                })
+                                return deferred.promise;
+                            }],
+                    dealerSalesDataList:['$q','$route','jmService','utilSvc',
+                        function($q,$route,apiSvc,util){
+                            var deferred = $q.defer();
+                            util.pageLoading("start");
+                            if (true){
+                                apiSvc.getDealerSalesDataList().$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                    util.pageLoading("stop");
+                                },function(err){
+                                    deferred.reject(err);
+                                    util.pageLoading("stop");
+                                })
+                            }else {
+                                deferred.resolve(undefined)
+                                util.pageLoading("stop");
+                            }
+                            
+                            return deferred.promise;
+                        }]
+                }
+            })
             .when('/admin', {
                 templateUrl: 'partials/admin.html',
                 controller: 'adminCtrl',

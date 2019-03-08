@@ -45,12 +45,16 @@ app.get('/jmapi/logout.json',auth.logout);
 app.get('/db-info.json',auth.dbInfo);
 
 var commonHandler = require('./api/handlers/commonHandler');
+var dealerSalesDataHandler = require('./api/handlers/dealerSalesDataHandler');
 app.get('/jmapi/get-user-list.json',auth.adminCheck,commonHandler.getUserList);
 app.post('/jmapi/add-edit-user.json',auth.adminCheck,commonHandler.addEditUser);
 app.post('/jmapi/delete-user.json',auth.adminCheck,commonHandler.deleteUser);
 app.post('/jmapi/view-info-log.json',auth.authCheck,commonHandler.viewLog);
 app.post('/jmapi/view-error-log.json',auth.authCheck,commonHandler.viewLog);
 app.post('/jmapi/get-performance-report.json',auth.authCheck,commonHandler.getPerformanceReport);
+app.post('/jmapi/get-dealer-sales-data-list.json',auth.authCheck,dealerSalesDataHandler.getDealerSalesDataList);
+app.get('/jmapi/get-product-type-list.json',auth.authCheck,commonHandler.getProductTypeList);
+//app.post('/jmapi/get-dealer-sales-data-list.json',dealerSalesDataHandler.getDealerSalesDataList);
 
 app.get('*', function(req, res){
    res.send({ERROR:'Sorry, '+req.originalUrl+' is an invalid URL.'});

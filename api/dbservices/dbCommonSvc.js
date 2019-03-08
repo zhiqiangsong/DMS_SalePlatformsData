@@ -53,4 +53,11 @@ const sqlSvc=require("./sqlService");
   }
   
 
+  exports.getProductTypeList=function(domain){
+    var stmt = "select FName from t_SubMessage where FTypeID = 10008";
+    let paramTypes={};
+    let paramValues={};
+    return sqlSvc.sqlK3Query(stmt,paramTypes,paramValues);
+  }
+
 

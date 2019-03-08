@@ -11,6 +11,11 @@ var appConfig=(function(){
 		Object.assign(param,this.config.jmSqlConnParams);
 		return param;
 	}
+	AppConfig.prototype.getK3SqlConnParam=function(){
+		var param = {};
+		Object.assign(param,this.config.jwmsK3ConnParams);
+		return param;
+	}
 	return {
 		getInstance : function(){
 				if (instance == null) {

@@ -1,0 +1,118 @@
+<h2 class="text-center" style="padding-top:20px">经销商销售数据维护</h2>
+<div class="margin-top-5" style="padding:20px 0 10px 0">
+        <div class="margin-top-5 col-sm-6 col-sm-offset-2" >
+         <form role="form" name="toNoForm" class="form-inline pull-right">
+            <div class="form-group" >
+                    <label class="control-label no-padding-right field-required" for="FBillNo"> 编号:</label>
+                        <input type='text' class='form-control'
+                                        name='FBillNo'
+                                        ng-model="dealerSalesDataSearch.FBillNo"
+                                        class='full-width form-control'
+                                        placeholder="填写编号"
+                                        typeahead-editable="false"
+                                        autocomplete="off">
+            </div>
+            <div class="form-group" >
+                <label class="control-label no-padding-right field-required" for="role"> 产品类别:</label>
+                    <select class="chosen-select form-control"
+                        ng-model="dealerSalesDataSearch.ProductTypeName"
+                        name="ProductTypeName"
+                        ng-options="item.FName as item.FName for item in productTypeList"
+                        >
+                        <option value="">选择产品类别</option>
+                    </select>
+            </div> 
+          <div class="form-group">
+            <label class="control-label no-padding-right field-required" for="role"> 制单日期:</label>      
+            <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" placeholder="请选择日期" 
+                  datepicker-options="{minMode: 'day'}" 
+                  datepicker-mode="'day'"
+                ng-model="temp.dt" is-open="opened" ng-readonly="true"
+                ng-required="true" close-text="关闭"  ng-click="opened=true" clear-text="清除" current-text='本月'/>
+          </div>
+          <button type="submit" class="btn btn-default" ng-click="queryDealerSalesData()" >查询</button>
+        </form>
+      </div>
+      </div>  
+<div class="margin-top-20" style="padding:30px 0 10px 0">
+    <table class="table padding-top table-striped border">
+        <thead> 
+            <tr>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FBillNo'; sortReverse = !sortReverse">
+                编号
+                <span ng-show="sortType == 'FBillNo' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FBillNo' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'single'; sortReverse = !sortReverse">
+                制单人
+                <span ng-show="sortType == 'single' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'single' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'ProductTypeName'; sortReverse = !sortReverse">
+                产品类别
+                <span ng-show="sortType == 'ProductTypeName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'ProductTypeName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FDate'; sortReverse = !sortReverse">
+                制单日期
+                <span ng-show="sortType == 'FDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            
+            
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'statusZN'; sortReverse = !sortReverse">
+                状态
+                <span ng-show="sortType == 'statusZN' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'statusZN' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                操作
+            </th>
+            </tr>
+        </thead> 
+        <tbody>          
+            <tr ng-if="dealerSalesDataListByPage&&dealerSalesDataListByPage.length>0" 
+                ng-repeat="(idx,dealerSalesDataList) in dealerSalesDataListByPage | orderBy:sortType:sortReverse">
+            <td width="8%" class="text-center">{{dealerSalesDataList.FBillNo}}</td>
+            <td width="8%" class="text-center">{{dealerSalesDataList.single}}</td>
+            <td width="8%" class="text-center">{{dealerSalesDataList.ProductTypeName}}</td>
+            <td width="8%" class="text-center">{{dealerSalesDataList.FDate|date:'yyyy-MM-dd'}}</td>
+            <td width="8%" class="text-center">{{dealerSalesDataList.statusZN}}</td>
+            <td width="8%" class="text-center">
+                <button type="button" class="btn btn-info btn-xs"  ng-click="addOrEditBusinessPrice(businessPrice)">
+                    编辑 
+                </button>
+                <button type="button" class="btn btn-danger btn-xs"  confirm-required="{{businessPrice.fid}}" 
+                        ng-click="deleteBusinessPrice(businessPrice)">
+                    删除 
+                </button>
+            </td>
+        </tr>
+        <tr ng-if="!dealerSalesDataList||dealerSalesDataList.length==0">
+            <td colspan="4" class='empty-message'>没有数据.</td>
+        </tr>
+        </tbody> 
+    </table>
+    <div class="margin-top text-center">
+            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    </div>
+    <div class="margin-top text-center">
+        <button type="button" class="btn btn-success" ng-click="addOrEditBusinessPrice()">
+            <span class="fa fa-plus-circle fa-lg"></span>
+            添加商务价格
+        </button>
+    </div>
+</div>
+
+    <pre ng-show="debug">dealerSalesDataList:{{dealerSalesDataList | json}}</pre>	
+    <pre ng-show="debug">dealerSalesDataListByPage:{{dealerSalesDataListByPage | json}}</pre>	

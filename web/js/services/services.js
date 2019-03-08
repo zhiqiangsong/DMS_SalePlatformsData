@@ -51,6 +51,20 @@
               },
               isArray:true
             },
+            getDealerSalesDataList:{
+              method: 'POST',
+              params:{
+                type: 'get-dealer-sales-data-list'
+              },
+              isArray:true
+            },
+            getProductType:{
+              method: 'GET',
+              params:{
+                type: 'get-product-type-list'
+              },
+              isArray:true
+            },
             viewInfoLog:{
               method: 'POST',
               params:{
@@ -189,6 +203,12 @@
           display:"QA Sample"
         }
       ],
+      pageMessage:
+        {
+          itemPerPage:6,
+          currentPage:1,
+          maxSize:8
+        },
       userRoles:["superAdmin","admin","normal"],
       units:[
         {id:"IN",display:"inch"},
