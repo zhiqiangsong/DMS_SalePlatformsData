@@ -12,7 +12,7 @@
 
 下载代码并在本地建立项目：
 打开命令行窗口，改变路径，转到你想要的开发路径，然后键入：
- git clone https://github.com/Biosensors/jwms-mvc.git
+ git clone https://github.com/zhiqiangsong/DMS_SalePlatformsData.git
 
 安装依赖：
   npm install

@@ -1,8 +1,8 @@
 {
-  "name": "jwms-mvc",
+  "name": "DMS_SalePlatformsData",
   "version": "0.0.1",
   "authors": [
-    "yadong <yd.zhu@biosensors.com>"
+    "zhiqiang <zq.song@jwmsgrp.com>"
   ],
   "description": "JWMS MVC Framework, jwms-mvc",
   "main": "index.html",
@@ -10,7 +10,7 @@
     "yui"
   ],
   "keywords": [
-    "biosensors",
+    "JWMS",
     "jwms",
     "jm"
   ],

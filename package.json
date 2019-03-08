@@ -1,5 +1,5 @@
 {
-  "name": "jwms-mvc",
+  "name": "dms_saleplatformsdata",
   "version": "1.0.0",
   "description": "build RESTFUL api app for JWMS",
   "main": "server.js",
@@ -10,19 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Biosensors/jwms-mvc.git"
+    "url": "git+https://github.com/zhiqiangsong/DMS_SalePlatformsData.git"
   },
   "keywords": [
-    "Biosensors",
-    "jwms-mvc",
+    "JWMS",
+    "DMS_SalePlatformsData",
     "api"
   ],
-  "author": "Yadong Zhu",
+  "author": "zhiqang song",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Biosensors/jwms-mvc/issues"
+    "url": "https://github.com/zhiqiangsong/DMS_SalePlatformsData/issues"
   },
-  "homepage": "https://github.com/Biosensors/jwms-mvc#readme",
+  "homepage": "https://github.com/zhiqiangsong/DMS_SalePlatformsData/#readme",
   "dependencies": {
     "Promise": "^1.0.5",
     "activedirectory": "^0.7.2",
