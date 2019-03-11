@@ -54,6 +54,8 @@ app.post('/jmapi/view-error-log.json',auth.authCheck,commonHandler.viewLog);
 app.post('/jmapi/get-performance-report.json',auth.authCheck,commonHandler.getPerformanceReport);
 app.post('/jmapi/get-dealer-sales-data-list.json',auth.authCheck,dealerSalesDataHandler.getDealerSalesDataList);
 app.get('/jmapi/get-product-type-list.json',auth.authCheck,commonHandler.getProductTypeList);
+app.post('/jmapi/add-dealer-sale-data.json',auth.authCheck,dealerSalesDataHandler.addDealerSaleData);
+app.post('/jmapi/delete-dealer-sales-data.json',auth.authCheck,dealerSalesDataHandler.deleteDealerSaleData);
 //app.post('/jmapi/get-dealer-sales-data-list.json',dealerSalesDataHandler.getDealerSalesDataList);
 
 app.get('*', function(req, res){

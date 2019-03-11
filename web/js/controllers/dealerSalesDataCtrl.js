@@ -36,7 +36,7 @@
              $scope.pageChanged();
          }
 
-        $scope.addOrEditBusinessPrice=function(businessPrice){
+        $scope.addOrEditDealerSalesData=function(businessPrice){
             var modalInstance;
             modalInstance = $modal.open({
                 templateUrl: 'partials/add-edit-business-price.html',
@@ -51,11 +51,30 @@
                     productTypeList:function(){return productTypeList}
                 }
             });
-            modalInstance.result.then(function(businessPriceList) {
-                $scope.businessPriceList = businessPriceList;
+            modalInstance.result.then(function(dealerSalesDataList) {
+                $scope.dealerSalesDataList = dealerSalesDataList;
                 $scope.adjustmentData();
             });
         };
+
+        $scope.addDealerSalesData=function(){
+            var modalInstance;
+            modalInstance = $modal.open({
+                templateUrl: 'partials/add-dealerSales-data.html',
+                windowClass: "sub-detail-modal",
+                controller: "addDealerSalesDataCtrl",
+                backdrop: "static",
+                resolve:{
+                    dealerSalesDataList:function(){return $scope.dealerSalesDataList},
+                    productTypeList:function(){return productTypeList}
+                }
+            });
+            modalInstance.result.then(function(dealerSalesDataList) {
+                $scope.dealerSalesDataList = dealerSalesDataList;
+                $scope.adjustmentData();
+            });
+        };
+
         $scope.copyBusinessPrice=function(){
             var modalInstance;
             modalInstance = $modal.open({
@@ -72,14 +91,10 @@
                 $scope.adjustmentData();
             });
         };
-        $scope.deleteBusinessPrice=function(businessPrice){
-            var dateHere;
-            if($rootScope.dateQuery!=undefined){               
-                dateHere = utilSvc.formatDate($rootScope.dateQuery);
-            }
-            apiSvc.deleteBusinessPrice({businessPrice:businessPrice,date:dateHere,ProductTypeName:$rootScope.productTypeNameQuery,FHospName:$rootScope.fHospNameQuery}).$promise.then(
+        $scope.deleteDealerSalesData=function(dealerSalesData){
+            apiSvc.deleteDealerSalesData({dealerSalesData:dealerSalesData,FDate:$rootScope.FDateQuery,ProductTypeName:$rootScope.productTypeNameQuery,FBillNo:$rootScope.FBillNoQuery}).$promise.then(
                 function(data){
-                    $scope.businessPriceList = data;
+                    $scope.dealerSalesDataList = data;
                     $scope.adjustmentData();
                 },
                 function(err){
@@ -92,7 +107,15 @@
 
         $scope.queryDealerSalesData=function(){
             //$scope.temp.dt.setHours($scope.temp.dt.getHours()+8);
-            apiSvc.getDealerSalesDataList({FBillNo:$scope.dealerSalesDataSearch.FBillNo,FDate:$scope.temp.dt,ProductTypeName:$scope.dealerSalesDataSearch.ProductTypeName}).$promise.then(
+            debugger;
+            var dataStr;
+            if($scope.temp.dt != undefined && $scope.temp.dt != "undefined" && $scope.temp.dt != ""){
+                dataStr = $scope.dateToString($scope.temp.dt);
+            }
+            $rootScope.FBillNoQuery = $scope.dealerSalesDataSearch.FBillNo;
+            $rootScope.FDateQuery = dataStr;
+            $rootScope.ProductTypeNameQuery = $scope.dealerSalesDataSearch.ProductTypeName;
+            apiSvc.getDealerSalesDataList({FBillNo:$scope.dealerSalesDataSearch.FBillNo,FDate:dataStr,ProductTypeName:$scope.dealerSalesDataSearch.ProductTypeName}).$promise.then(
                 function(data){
                     $scope.dealerSalesDataList = data;
                     $scope.adjustmentData();
@@ -122,6 +145,20 @@
                     num++;
                 }
             }
+        }
+
+        $scope.dateToString = function(date){
+            var year = date.getFullYear(); 
+            var month =(date.getMonth() + 1).toString(); 
+            var day = (date.getDate()).toString();  
+            if (month.length == 1) { 
+                month = "0" + month; 
+            } 
+            if (day.length == 1) { 
+                day = "0" + day; 
+            }
+            var dateTime = year + "-" + month + "-" + day;
+            return dateTime;
         }
 
     }])

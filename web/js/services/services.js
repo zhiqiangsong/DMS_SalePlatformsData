@@ -37,6 +37,20 @@
               },
               isArray:true
             },
+            addDealerSalesData:{
+              method: 'POST',
+              params:{
+                type: 'add-dealer-sale-data'
+              },
+              isArray:true
+            },
+            deleteDealerSalesData:{
+              method: 'POST',
+              params:{
+                type: 'delete-dealer-sales-data'
+              },
+              isArray:true
+            },
             deleteUser:{
               method: 'POST',
               params:{

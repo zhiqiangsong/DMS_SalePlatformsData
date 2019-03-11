@@ -28,17 +28,17 @@ const sqlSvc=require("./sqlService");
     var stmt = "select aa.*,case aa.status when 0 then '已保存' when 1 then '已提交' else '异常数据' end as statusZN,bb.FName as ProductTypeName from dbo.t_BOS_DealerSalesData aa inner join t_SubMessage bb on aa.productTypeId = bb.FInterID and bb.FTypeID = 10008 where 1=1 ";
     let paramTypes={};
     let paramValues={};
-    if(FBillNo != undefined && FBillNo != "undefined"){
+    if(FBillNo != undefined && FBillNo != "undefined" && FBillNo != ""){
       stmt += " and aa.FBillNo = @FBillNo";
       paramTypes["FBillNo"] = 'sql.NVarChar(255)';
       paramValues["FBillNo"] = FBillNo;
     }
-    if(FDate != undefined && FDate != "undefined"){
+    if(FDate != undefined && FDate != "undefined" && FDate != ""){
       stmt += " and convert(varchar(100),aa.FDate,23) = @FDate";
       paramTypes["FDate"] = 'sql.VarChar(100)';
       paramValues["FDate"] = FDate.substring(0,10);
     }
-    if(ProductTypeName != undefined && ProductTypeName != "undefined"){
+    if(ProductTypeName != undefined && ProductTypeName != "undefined" && ProductTypeName != ""){
       stmt += " and bb.FName = @ProductTypeName";
       paramTypes["ProductTypeName"] = 'sql.NVarChar(50)';
       paramValues["ProductTypeName"] = ProductTypeName;
@@ -47,37 +47,26 @@ const sqlSvc=require("./sqlService");
   } 
 
 
-  exports.deleteBusinessPrice=function(FID){
-    var stmt = "delete from dbo.t_BOSDocument where fid=@fid";
+  exports.deleteDealerSaleData=function(FID){
+    var stmt = "delete from dbo.t_BOS_DealerSalesData where fid=@fid";
     let paramTypes={fid:'sql.Int'};
     let paramValues={fid:FID};
     return sqlSvc.sqlK3Query(stmt,paramTypes,paramValues);
   }
 
-  exports.addBusinessPrice=function(businessPrice){
-    //stmt will be something 4like: "exec JM_InsertOrUpdateUserProfile 'yd.zhu','朱亚东','BITSG','admin','1'"
-    let stmt=["exec JM_InsertOrUpdateBusinessPriceProfile"];
+  exports.deleteDealerSaleDataEntry=function(FID){
+    var stmt = "delete from dbo.t_BOS_DealerSalesDataEntry2 where fid=@fid";
+    let paramTypes={fid:'sql.Int'};
+    let paramValues={fid:FID};
+    return sqlSvc.sqlK3Query(stmt,paramTypes,paramValues);
+  }
+
+  exports.addDealerSalesData=function(dealerSalesData){
+    let stmt=["exec JM_InsertDealerSalesDataProfile"];
    
-    if(businessPrice.FID == undefined){
-      businessPrice.FID = -1;
-    }
-    if(businessPrice.Fnote == undefined){
-      businessPrice.Fnote = '';
-    }
-    stmt.push(`${businessPrice.FID},`),
-    stmt.push(`'${businessPrice.FDateFrom}',`),
-    stmt.push(`'${businessPrice.FDateTo}',`),
-    stmt.push(`'${businessPrice.FHospName}',`),
-    stmt.push(`'${businessPrice.DistributorName}',`),
-    stmt.push(`'${businessPrice.ProductTypeName}',`),
-    stmt.push(`${businessPrice.CSPrice},`),
-    stmt.push(`${businessPrice.BARebate},`),
-    stmt.push(`${businessPrice.TTBoot},`),
-    stmt.push(`${businessPrice.Spromotion},`),
-    stmt.push(`${businessPrice.BTBGift},`),
-    stmt.push(`${businessPrice.BNHDAward},`),
-    stmt.push(`'${businessPrice.Fnote}',`),
-    stmt.push(`'${businessPrice.maintainerName}'`)
+    stmt.push(`'${dealerSalesData.FBillNo}',`),
+    stmt.push(`'${dealerSalesData.ProductTypeName}',`)
+    stmt.push(`'${dealerSalesData.note}'`)
     return sqlSvc.sqlK3Query(stmt.join(" "))
   }
 

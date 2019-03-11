@@ -82,18 +82,18 @@
         </thead> 
         <tbody>          
             <tr ng-if="dealerSalesDataListByPage&&dealerSalesDataListByPage.length>0" 
-                ng-repeat="(idx,dealerSalesDataList) in dealerSalesDataListByPage | orderBy:sortType:sortReverse">
-            <td width="8%" class="text-center">{{dealerSalesDataList.FBillNo}}</td>
-            <td width="8%" class="text-center">{{dealerSalesDataList.single}}</td>
-            <td width="8%" class="text-center">{{dealerSalesDataList.ProductTypeName}}</td>
-            <td width="8%" class="text-center">{{dealerSalesDataList.FDate|date:'yyyy-MM-dd'}}</td>
-            <td width="8%" class="text-center">{{dealerSalesDataList.statusZN}}</td>
+                ng-repeat="(idx,dealerSalesData) in dealerSalesDataListByPage | orderBy:sortType:sortReverse">
+            <td width="8%" class="text-center">{{dealerSalesData.FBillNo}}</td>
+            <td width="8%" class="text-center">{{dealerSalesData.single}}</td>
+            <td width="8%" class="text-center">{{dealerSalesData.ProductTypeName}}</td>
+            <td width="8%" class="text-center">{{dealerSalesData.FDate|date:'yyyy-MM-dd'}}</td>
+            <td width="8%" class="text-center">{{dealerSalesData.statusZN}}</td>
             <td width="8%" class="text-center">
-                <button type="button" class="btn btn-info btn-xs"  ng-click="addOrEditBusinessPrice(businessPrice)">
-                    编辑 
+                <button type="button" class="btn btn-info btn-xs"  ng-click="addOrEditDealerSalesData(dealerSalesData)">
+                    查看编辑 
                 </button>
-                <button type="button" class="btn btn-danger btn-xs"  confirm-required="{{businessPrice.fid}}" 
-                        ng-click="deleteBusinessPrice(businessPrice)">
+                <button type="button" class="btn btn-danger btn-xs"  confirm-required="{{dealerSalesData.fid}}" 
+                        ng-click="deleteDealerSalesData(dealerSalesData)">
                     删除 
                 </button>
             </td>
@@ -107,9 +107,9 @@
             <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
     </div>
     <div class="margin-top text-center">
-        <button type="button" class="btn btn-success" ng-click="addOrEditBusinessPrice()">
+        <button type="button" class="btn btn-success" ng-click="addDealerSalesData()">
             <span class="fa fa-plus-circle fa-lg"></span>
-            添加商务价格
+            添加销售数据
         </button>
     </div>
 </div>

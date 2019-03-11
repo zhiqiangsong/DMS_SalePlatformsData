@@ -6,13 +6,7 @@ exports.getDealerSalesDataList=function(req,res){
 	(async function () {
 		try {
 			//var list = await dbDealerSalesDataSvc.getDealerSalesDataList(req.body.date,req.body.FHospName,req.body.ProductTypeName);
-			var date = undefined;
-			var FDateString;
-			if(req.body.FDate!=undefined){
-				date = new Date(req.body.FDate);
-				FDateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-			}
-			var list = await dbDealerSalesDataSvc.getDealerSalesDataList(req.body.FBillNo,FDateString,req.body.ProductTypeName);
+			var list = await dbDealerSalesDataSvc.getDealerSalesDataList(req.body.FBillNo,req.body.FDate,req.body.ProductTypeName);
 			return res.status(200).send(list.recordset);
 		} catch (error) {
 			return res.status(200).send({error:true,message:error.message});
@@ -20,11 +14,12 @@ exports.getDealerSalesDataList=function(req,res){
 	})()
 };
 
-/* exports.deleteBusinessPrice=function(req,res){
+ exports.deleteDealerSaleData=function(req,res){
 	(async function () {
 		try {
-			await dbBusinessPriceSvc.deleteBusinessPrice(req.body.businessPrice.FID);
-			var list = await dbBusinessPriceSvc.getBusinessPriceList(req.body.date,req.body.FHospName,req.body.ProductTypeName);
+			await dbDealerSalesDataSvc.deleteDealerSaleData(req.body.dealerSalesData.FID);
+			await dbDealerSalesDataSvc.deleteDealerSaleDataEntry(req.body.dealerSalesData.FID);
+			var list = await dbDealerSalesDataSvc.getDealerSalesDataList(req.body.FBillNo,req.body.FDate,req.body.ProductTypeName);
 			return res.status(200).send(list.recordset);
 		} catch (error) {
 			return res.status(200).send({error:true,message:error.message});
@@ -33,7 +28,7 @@ exports.getDealerSalesDataList=function(req,res){
 };
 
 
-exports.addEditBusinessPrice=function(req,res){
+/*exports.addEditBusinessPrice=function(req,res){
 	(async function () {
 		try {
 			var list = await dbBusinessPriceSvc.addBusinessPrice(req.body.businessPrice);
@@ -56,3 +51,14 @@ exports.copyBusinessPrice=function(req,res){
 		}
 	})()
 }; */
+
+exports.addDealerSaleData=function(req,res){
+	(async function () {
+		try {
+			var list = await dbDealerSalesDataSvc.addDealerSalesData(req.body.dealerSalesData);
+			return res.status(200).send(list.recordset);
+		} catch (error) {
+			return res.status(200).send({error:true,message:error.message});
+		}
+	})()
+};
