@@ -81,6 +81,68 @@
                         }]
                 }
             })
+            .when('/dealerSalesDataMaintenance/:FID?', {
+                templateUrl: 'partials/dealerSalesDataMaintenance.html',
+                controller: 'dealerSalesDataMaintenanceCtrl',
+                resolve:{
+                    productTypeList:['$q','$route','jmService','utilSvc',
+                            function($q,$route,apiSvc,util){
+                                var deferred = $q.defer();
+                                apiSvc.getProductType().$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                },function(err){
+                                    deferred.reject(err);
+                                })
+                                return deferred.promise;
+                            }],
+                        dealerSalesData:['$q','$route','jmService','utilSvc',
+                        function($q,$route,apiSvc,util){
+                            var deferred = $q.defer();
+                            if ($route.current.params.FID){
+                                apiSvc.getDealerSalesData({FID:$route.current.params.FID}).$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                },function(err){
+                                    deferred.reject(err);
+                                })
+                            }else {
+                                deferred.resolve(undefined)
+                            }
+                            
+                            return deferred.promise;
+                        }],
+                        dealerSalesDataEntryList:['$q','$route','jmService','utilSvc',
+                        function($q,$route,apiSvc,util){
+                            var deferred = $q.defer();
+                            util.pageLoading("start");
+                            if ($route.current.params.FID){
+                                apiSvc.getDealerSalesDataEntryList({FID:$route.current.params.FID}).$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                    util.pageLoading("stop");
+                                },function(err){
+                                    deferred.reject(err);
+                                    util.pageLoading("stop");
+                                })
+                            }else {
+                                deferred.resolve(undefined)
+                                util.pageLoading("stop");
+                            }
+                            
+                            return deferred.promise;
+                        }]
+                }
+            })
             .when('/admin', {
                 templateUrl: 'partials/admin.html',
                 controller: 'adminCtrl',

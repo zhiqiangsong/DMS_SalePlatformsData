@@ -1,4 +1,4 @@
-吉威医疗代理商销售数据服务系统DMS_SalePlatformsData
+DMS_SalePlatformsData
 ============
 前端框架： angularjs 1.5.7 
 预装软件：

@@ -46,6 +46,7 @@ app.get('/db-info.json',auth.dbInfo);
 
 var commonHandler = require('./api/handlers/commonHandler');
 var dealerSalesDataHandler = require('./api/handlers/dealerSalesDataHandler');
+//var dealerSalesDataHandler = require('./api/handlers/dealerSalesDataHandler');
 app.get('/jmapi/get-user-list.json',auth.adminCheck,commonHandler.getUserList);
 app.post('/jmapi/add-edit-user.json',auth.adminCheck,commonHandler.addEditUser);
 app.post('/jmapi/delete-user.json',auth.adminCheck,commonHandler.deleteUser);
@@ -56,6 +57,19 @@ app.post('/jmapi/get-dealer-sales-data-list.json',auth.authCheck,dealerSalesData
 app.get('/jmapi/get-product-type-list.json',auth.authCheck,commonHandler.getProductTypeList);
 app.post('/jmapi/add-dealer-sale-data.json',auth.authCheck,dealerSalesDataHandler.addDealerSaleData);
 app.post('/jmapi/delete-dealer-sales-data.json',auth.authCheck,dealerSalesDataHandler.deleteDealerSaleData);
+
+app.post('/jmapi/get-dealerSalesData.json',auth.authCheck,dealerSalesDataHandler.getDealerSalesData);
+app.post('/jmapi/get-dealerSalesDataEntry-list.json',auth.authCheck,dealerSalesDataHandler.getDealerSalesDataEntryList);
+app.post('/jmapi/save-dealer-sales-data.json',auth.authCheck,dealerSalesDataHandler.saveDealerSalesData);
+app.post('/jmapi/commit-dealer-sales-data.json',auth.authCheck,dealerSalesDataHandler.commitDealerSalesData);
+
+/* app.post('/jmapi/get-performance-report.json',commonHandler.getPerformanceReport);
+app.post('/jmapi/get-dealer-sales-data-list.json',dealerSalesDataHandler.getDealerSalesDataList);
+app.get('/jmapi/get-product-type-list.json',commonHandler.getProductTypeList);
+app.post('/jmapi/add-dealer-sale-data.json',dealerSalesDataHandler.addDealerSaleData);
+app.post('/jmapi/delete-dealer-sales-data.json',dealerSalesDataHandler.deleteDealerSaleData);
+app.post('/jmapi/get-dealerSalesData.json',dealerSalesDataHandler.getDealerSalesData);
+app.post('/jmapi/get-dealerSalesDataEntry-list.json',dealerSalesDataHandler.getDealerSalesDataEntryList); */
 //app.post('/jmapi/get-dealer-sales-data-list.json',dealerSalesDataHandler.getDealerSalesDataList);
 
 app.get('*', function(req, res){

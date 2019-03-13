@@ -9,7 +9,6 @@
         $scope.dealerSalesDataSearch={};
 
         if (dealerSalesDataList){
-            // debugger;
              $scope.dealerSalesDataList = dealerSalesDataList;
              $scope.productTypeList = productTypeList;
              $scope.totalItems = dealerSalesDataList.length;
@@ -36,8 +35,8 @@
              $scope.pageChanged();
          }
 
-        $scope.addOrEditDealerSalesData=function(businessPrice){
-            var modalInstance;
+        $scope.addOrEditDealerSalesData=function(dealerSalesData){
+            /* var modalInstance;
             modalInstance = $modal.open({
                 templateUrl: 'partials/add-edit-business-price.html',
                 windowClass: "sub-detail-modal",
@@ -54,7 +53,8 @@
             modalInstance.result.then(function(dealerSalesDataList) {
                 $scope.dealerSalesDataList = dealerSalesDataList;
                 $scope.adjustmentData();
-            });
+            }); */
+            $location.path("/dealerSalesDataMaintenance/"+dealerSalesData.FID);
         };
 
         $scope.addDealerSalesData=function(){
@@ -107,7 +107,6 @@
 
         $scope.queryDealerSalesData=function(){
             //$scope.temp.dt.setHours($scope.temp.dt.getHours()+8);
-            debugger;
             var dataStr;
             if($scope.temp.dt != undefined && $scope.temp.dt != "undefined" && $scope.temp.dt != ""){
                 dataStr = $scope.dateToString($scope.temp.dt);

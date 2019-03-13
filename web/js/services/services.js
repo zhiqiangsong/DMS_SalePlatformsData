@@ -91,7 +91,32 @@
               params: {
                 type: "get-performance-report"
               }
+            },
+            getDealerSalesData:{
+             method: 'POST',
+             params: {
+               type: "get-dealerSalesData"
+             }
+           },
+           getDealerSalesDataEntryList:{
+            method: 'POST',
+            params: {
+              type: "get-dealerSalesDataEntry-list"
+            },
+            isArray:true
+          },
+          saveDealerSalesData:{
+            method: 'POST',
+            params:{
+              type: 'save-dealer-sales-data'
             }
+          },
+          commitAllData:{
+            method: 'POST',
+            params:{
+              type: 'commit-dealer-sales-data'
+            }
+          }
         }
       }
        
@@ -219,7 +244,7 @@
       ],
       pageMessage:
         {
-          itemPerPage:6,
+          itemPerPage:3,
           currentPage:1,
           maxSize:8
         },
