@@ -21,6 +21,29 @@ exports.getProductIndexList=function(FYear,ProductTypeName){
     return sqlSvc.sqlK3Query(stmt.join(" "))
   }
 
+  exports.saveProductIndexList=function(productIndexList){
+    for(var i=0;i<productIndexList.length;i++){
+      let stmtEntry=["exec JM_UpdateProductIndexListProfile"];
+      stmtEntry.push(`${productIndexList[i].FID},`),
+      stmtEntry.push(`${productIndexList[i].Jan},`),
+      stmtEntry.push(`${productIndexList[i].Feb},`),
+      stmtEntry.push(`${productIndexList[i].Mar},`),
+      stmtEntry.push(`${productIndexList[i].Apr},`),
+      stmtEntry.push(`${productIndexList[i].May},`),
+      stmtEntry.push(`${productIndexList[i].Jun},`),
+      stmtEntry.push(`${productIndexList[i].Jul},`),
+      stmtEntry.push(`${productIndexList[i].Aug},`),
+      stmtEntry.push(`${productIndexList[i].Sep},`),
+      stmtEntry.push(`${productIndexList[i].Oct},`),
+      stmtEntry.push(`${productIndexList[i].Nov},`),
+      stmtEntry.push(`${productIndexList[i].Dec}`)
+      sqlSvc.sqlK3Query(stmtEntry.join(" "))
+      if((i+1)==productIndexList.length){
+        return sqlSvc.sqlK3Query(stmtEntry.join(" "))
+      }
+    }
+  }
+
   exports.deleteBusinessPrice=function(FID){
     var stmt = "delete from dbo.t_BOSDocument where fid=@fid";
     let paramTypes={fid:'sql.Int'};

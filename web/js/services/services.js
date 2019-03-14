@@ -124,6 +124,12 @@
               type: 'save-dealer-sales-data'
             }
           },
+          saveProductIndexList:{
+            method: 'POST',
+            params:{
+              type: 'save-product-index-list'
+            }
+          },
           commitAllData:{
             method: 'POST',
             params:{

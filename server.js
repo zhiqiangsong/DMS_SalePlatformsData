@@ -64,6 +64,7 @@ app.post('/jmapi/get-product-index-list.json',auth.authCheck,productIndexHandler
 app.post('/jmapi/get-dealerSalesData.json',auth.authCheck,dealerSalesDataHandler.getDealerSalesData);
 app.post('/jmapi/get-dealerSalesDataEntry-list.json',auth.authCheck,dealerSalesDataHandler.getDealerSalesDataEntryList);
 app.post('/jmapi/save-dealer-sales-data.json',auth.authCheck,dealerSalesDataHandler.saveDealerSalesData);
+app.post('/jmapi/save-product-index-list.json',auth.authCheck,productIndexHandler.saveProductIndexList);
 app.post('/jmapi/init-product-index-data.json',auth.authCheck,productIndexHandler.initProductIndexData);
 
 /* app.post('/jmapi/get-performance-report.json',commonHandler.getPerformanceReport);

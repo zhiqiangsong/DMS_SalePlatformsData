@@ -23,6 +23,17 @@ exports.initProductIndexData=function(req,res){
 		}
 	})()
 };
+
+exports.saveProductIndexList=function(req,res){
+	(async function () {
+		try {
+			var list = await dbProductIndexSvc.saveProductIndexList(req.body.productIndexList);
+			return res.status(200).send(list.recordset);
+		} catch (error) {
+			return res.status(200).send({error:true,message:error.message});
+		}
+	})()
+};
 exports.deleteBusinessPrice=function(req,res){
 	(async function () {
 		try {

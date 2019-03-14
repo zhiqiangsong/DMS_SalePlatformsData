@@ -85,6 +85,25 @@
             });
         };
 
+        $scope.saveAllData=function(productIndexList){
+            apiSvc.saveProductIndexList({productIndexList:productIndexList}).$promise.then(
+                function(data){
+                    /* $scope.dealerSalesDataEntryList = data;
+                    $scope.adjustmentData(); */
+                    if(data.error==true){
+                        utilSvc.addAlert(data.message, "fail", false);
+                    } else {
+                        utilSvc.addAlert("保存成功！", "success", true);
+                    }
+                },
+                function(err){
+                    if (err.data&&err.data.message)
+                        utilSvc.addAlert(err.data.message, "fail", false);
+                    else
+                        utilSvc.addAlert(JSON.stringify(err), "fail", false);
+                })
+        }
+
         $scope.return=function(){
             $location.path("/productIndexMaintenance");
         }

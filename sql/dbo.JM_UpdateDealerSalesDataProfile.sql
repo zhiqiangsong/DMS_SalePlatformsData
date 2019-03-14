@@ -1,10 +1,17 @@
+USE [JWMS_TEST]
+GO
+/****** Object:  StoredProcedure [dbo].[JM_UpdateDealerSalesDataProfile]    Script Date: 03/14/2019 11:22:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 -- ================================================================  
 -- Author:szq  
 -- Create date:12/03/2018  
 -- Description:更新销售数据
 -- exec JM_InsertDealerSalesDataProfile 1,'20190311001','支架系统','测试数据' 
 -- ================================================================  
-CREATE PROCEDURE [dbo].[JM_UpdateDealerSalesDataProfile]   
+create PROCEDURE [dbo].[JM_UpdateDealerSalesDataProfile]   
 (  
  @FID INT,
  @FBillNo nvarchar(255),  
