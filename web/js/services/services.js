@@ -44,6 +44,13 @@
               },
               isArray:true
             },
+            getProductIndexList:{
+              method: 'POST',
+              params:{
+                type: 'get-product-index-list'
+              },
+              isArray:true
+            },
             deleteDealerSalesData:{
               method: 'POST',
               params:{
@@ -104,6 +111,12 @@
               type: "get-dealerSalesDataEntry-list"
             },
             isArray:true
+          },
+          initProductIndexData:{
+            method: 'POST',
+            params: {
+              type: "init-product-index-data"
+            }
           },
           saveDealerSalesData:{
             method: 'POST',
@@ -215,6 +228,13 @@
           
               return [year, month, day].join(separator||"");
           },
+          formatYear:function(date,separator) {
+            var d = (date)?new Date(date):new Date(),
+                year = d.getFullYear();
+        
+        
+            return year;
+        },
           pageLoading:function(arg){
             if (arg==="start"&&$rootScope.pageLoading){ //prevent from submit twice before return
               throw new Error("Please don't submit twice!");

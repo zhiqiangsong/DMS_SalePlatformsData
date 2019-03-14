@@ -4,7 +4,7 @@
 -- Description:更新销售数据
 -- exec JM_InsertDealerSalesDataProfile 1,'20190311001','支架系统','测试数据' 
 -- ================================================================  
-alter PROCEDURE [dbo].[JM_UpdateDealerSalesDataProfile]   
+CREATE PROCEDURE [dbo].[JM_UpdateDealerSalesDataProfile]   
 (  
  @FID INT,
  @FBillNo nvarchar(255),  

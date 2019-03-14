@@ -8,6 +8,7 @@
         $scope.temp={};
         $scope.dealerSalesData={};
 
+
         if (dealerSalesDataEntryList && dealerSalesData){
              $scope.dealerSalesData = dealerSalesData;
              $scope.dealerSalesDataEntryList = dealerSalesDataEntryList;
@@ -16,6 +17,14 @@
              $scope.itemPerPage = constants.pageMessage.itemPerPage;
              $scope.currentPage = constants.pageMessage.currentPage;
              $scope.maxSize = constants.pageMessage.maxSize;
+             var countSalesVolume = 0;
+             var countSaleroom = 0;
+             for(var k=0;k<dealerSalesDataEntryList.length;k++){
+                countSalesVolume += dealerSalesDataEntryList[k].salesVolume;
+                countSaleroom += dealerSalesDataEntryList[k].saleroom;
+             }
+             $scope.countSalesVolume = countSalesVolume;
+             $scope.countSaleroom = countSaleroom;
              $scope.pageChanged=function(){
                  $scope.dealerSalesDataEntryListByPage=[];
                  var startData = $scope.itemPerPage * ($scope.currentPage-1);
@@ -59,7 +68,6 @@
         };
 
         $scope.commitAllData=function(dealerSalesData){
-            debugger;
             if(dealerSalesData.status==1){
                 alert("数据已经提交，无法再次提交!");                   
                 return;
@@ -158,7 +166,6 @@
         }
 
         $scope.dateToString = function(date){
-            debugger;
             var year = date.getFullYear(); 
             var month =(date.getMonth() + 1).toString(); 
             var day = (date.getDate()).toString();  

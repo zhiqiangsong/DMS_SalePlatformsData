@@ -4,7 +4,7 @@
 -- Description:更新销售数据明细
 -- exec JM_UpdateDealerSalesDataEntryProfile 1,'20190311001','支架系统','测试数据' 
 -- ================================================================  
-alter PROCEDURE [dbo].[JM_UpdateDealerSalesDataEntryProfile]   
+CREATE PROCEDURE [dbo].[JM_UpdateDealerSalesDataEntryProfile]   
 (  
  @FEntryID INT,
  @endDate datetime,  
