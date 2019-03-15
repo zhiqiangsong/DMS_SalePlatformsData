@@ -89,7 +89,7 @@
             <td width="8%" class="text-center">{{responsibleMaintenance.agentName}}</td>
             <td width="8%" class="text-center">{{responsibleMaintenance.responsibleName}}</td>
             <td width="8%" class="text-center">
-                <button type="button" class="btn btn-info btn-xs"  ng-click="addOrEditDealerSalesData(responsibleMaintenance)">
+                <button type="button" class="btn btn-info btn-xs"  ng-click="addOrEditResponsibleMaintenance(responsibleMaintenance)">
                     查看编辑 
                 </button>
                 <button type="button" class="btn btn-danger btn-xs"  confirm-required="{{responsibleMaintenance.fid}}" 
@@ -107,7 +107,7 @@
             <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
     </div>
     <div class="margin-top text-center">
-        <button type="button" class="btn btn-success" ng-click="addDealerSalesData()">
+        <button type="button" class="btn btn-success" ng-click="addOrEditResponsibleMaintenance()">
             <span class="fa fa-plus-circle fa-lg"></span>
             添加数据
         </button>

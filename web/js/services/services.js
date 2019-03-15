@@ -151,6 +151,13 @@
             },
             isArray:true
           },
+          addEditResponsibleMaintenance:{
+            method: 'POST',
+            params:{
+              type: 'add-edit-responsible-maintenance'
+            },
+            isArray:true
+          },
           commitAllData:{
             method: 'POST',
             params:{

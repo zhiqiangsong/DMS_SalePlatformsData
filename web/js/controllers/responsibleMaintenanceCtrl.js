@@ -5,7 +5,6 @@
     angular.module('jm.controllers')
     .controller('responsibleMaintenanceCtrl',['$scope','$rootScope','$location','$modal','responsibleMaintenanceList','agentList','responsibleList','utilSvc','jmService','constants',
 	function($scope,$rootScope,$location,$modal,responsibleMaintenanceList,agentList,responsibleList,utilSvc,apiSvc,constants){
-        debugger;
         $scope.temp={};
         $scope.responsibleMaintenanceSearch={};
         if (responsibleMaintenanceList){
@@ -58,16 +57,18 @@
             $location.path("/responsibleMaintenanceMaintenance/"+responsibleMaintenance.FID);
         };
 
-        $scope.addDealerSalesDatatest=function(){
+        $scope.addOrEditResponsibleMaintenance=function(responsibleMaintenance){
             var modalInstance;
             modalInstance = $modal.open({
-                templateUrl: 'partials/add-dealerSales-data.html',
+                templateUrl: 'partials/add-edit-responsible-maintenance.html',
                 windowClass: "sub-detail-modal",
-                controller: "addDealerSalesDataCtrl",
+                controller: "addEditResponsibleMaintenanceCtrl",
                 backdrop: "static",
                 resolve:{
-                    responsibleMaintenanceList:function(){return $scope.responsibleMaintenanceList},
-                    productTypeList:function(){return productTypeList}
+                    responsibleMaintenance:function(){return responsibleMaintenance},
+                    agentList:function(){return $scope.agentList},
+                    responsibleList:function(){
+                        return $scope.responsibleList}
                 }
             });
             modalInstance.result.then(function(responsibleMaintenanceList) {

@@ -72,6 +72,8 @@ app.post('/jmapi/init-product-index-data.json',auth.authCheck,productIndexHandle
 app.get('/jmapi/get-agent-list.json',auth.authCheck,commonHandler.getAgentList);
 app.get('/jmapi/get-responsible-list.json',auth.authCheck,commonHandler.getResponsibleList);
 
+app.post('/jmapi/add-edit-responsible-maintenance.json',auth.authCheck,responsibleMaintenanceHandler.addEditResponsibleMaintenance);
+
 /* app.post('/jmapi/get-performance-report.json',commonHandler.getPerformanceReport);
 app.post('/jmapi/get-dealer-sales-data-list.json',dealerSalesDataHandler.getDealerSalesDataList);
 app.get('/jmapi/get-product-type-list.json',commonHandler.getProductTypeList);
