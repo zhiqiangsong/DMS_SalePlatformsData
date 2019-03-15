@@ -81,6 +81,57 @@
                         }]
                 }
             })
+            .when('/ResponsibleMaintenance', {
+                templateUrl: 'partials/responsible-Maintenance.html',
+                controller: 'responsibleMaintenanceCtrl',
+                resolve:{
+                    agentList:['$q','jmService','utilSvc',
+                        function($q,apiSvc,util){
+                            var deferred = $q.defer();
+                            apiSvc.getAgent().$promise.then(function(data){
+                                if (data){
+                                    deferred.resolve(data);
+                                } else {
+                                    deferred.resolve(undefined);
+                                }
+                            },function(err){
+                                deferred.reject(err);
+                            })
+                            return deferred.promise;
+                        }],
+                    responsibleList:['$q','$route','jmService','utilSvc',
+                        function($q,$route,apiSvc,util){
+                            var deferred = $q.defer();
+                            apiSvc.getResponsibleList().$promise.then(function(data){
+                                if (data){
+                                    deferred.resolve(data);
+                                } else {
+                                    deferred.resolve(undefined);
+                                }
+                            },function(err){
+                                deferred.reject(err);
+                            })
+                            return deferred.promise;
+                        }],
+                        responsibleMaintenanceList:['$q','$route','jmService','utilSvc',
+                            function($q,$route,apiSvc,util){
+                                var deferred = $q.defer();
+                                util.pageLoading("start");
+                                apiSvc.getResponsibleMaintenanceList().$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                    util.pageLoading("stop");
+                                },function(err){
+                                    deferred.reject(err);
+                                    util.pageLoading("stop");
+                                })
+                                return deferred.promise;
+                            }]
+                }
+            })
             .when('/productIndexMaintenance/:year?/:ProductTypeName?', {
                 templateUrl: 'partials/productIndex-maintenance.html',
                 controller: 'productIndexMaintenanceCtrl',

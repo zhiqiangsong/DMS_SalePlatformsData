@@ -60,4 +60,19 @@ const sqlSvc=require("./sqlService");
     return sqlSvc.sqlK3Query(stmt,paramTypes,paramValues);
   }
 
+  exports.getAgentList=function(domain){
+    var stmt = "select FName from V_Agents";
+    let paramTypes={};
+    let paramValues={};
+    return sqlSvc.sqlK3Query(stmt,paramTypes,paramValues);
+  }
+
+  exports.getResponsibleList=function(domain){
+    var stmt = "select FName from t_User where FUserTypeID =7 and FForbidden = 0";
+    let paramTypes={};
+    let paramValues={};
+    return sqlSvc.sqlK3Query(stmt,paramTypes,paramValues);
+  }
+  
+
 

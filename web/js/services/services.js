@@ -112,6 +112,13 @@
             },
             isArray:true
           },
+          getResponsibleMaintenanceList:{
+            method: 'POST',
+            params: {
+              type: "get-responsibleMaintenance-list"
+            },
+            isArray:true
+          },
           initProductIndexData:{
             method: 'POST',
             params: {
@@ -129,6 +136,20 @@
             params:{
               type: 'save-product-index-list'
             }
+          },
+          getAgent:{
+            method: 'GET',
+            params:{
+              type: 'get-agent-list'
+            },
+            isArray:true
+          },
+          getResponsibleList:{
+            method: 'GET',
+            params:{
+              type: 'get-responsible-list'
+            },
+            isArray:true
           },
           commitAllData:{
             method: 'POST',

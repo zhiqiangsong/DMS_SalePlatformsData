@@ -89,3 +89,26 @@ exports.viewLog=function(req,res){
 		return res.status(400).send({error:true,message:err});
 	})
 };
+
+exports.getAgentList=function(req,res){
+	(async function () {
+		try {
+			var list = await dbCommonSvc.getAgentList();
+			return res.status(200).send(list.recordset);
+		} catch (error) {
+			return res.status(200).send({error:true,message:error.message});
+		}
+	})()
+};
+
+
+exports.getResponsibleList=function(req,res){
+	(async function () {
+		try {
+			var list = await dbCommonSvc.getResponsibleList();
+			return res.status(200).send(list.recordset);
+		} catch (error) {
+			return res.status(200).send({error:true,message:error.message});
+		}
+	})()
+};
