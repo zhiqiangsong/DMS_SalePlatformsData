@@ -1,15 +1,17 @@
 <h2 class="text-center" style="padding-top:20px">经销商销售数据单</h2>
 <div class="margin-top-5" style="padding:20px 0 10px 0">
-        <div class="pull-right margin-right-300">
-            <button type="button" class="btn btn-info" ng-click="saveAllData(dealerSalesData,dealerSalesDataEntryList)" >保存</button>
-            <button type="button" class="btn btn-info" ng-click="commitAllData(dealerSalesData)" >提交</button>
-            <button type="button" class="btn btn-danger" confirm-required="{{dealerSalesData.fid}}" ng-click="deleteDealerSalesData(dealerSalesData)" >删除</button>
-            <button type="button" class="btn btn-primary" ng-click="return()" >返回</button>
+        <div class="container">
+                <div class="pull-right margin-right-300">
+                        <button type="button" class="btn btn-info" ng-click="saveAllData(dealerSalesData,dealerSalesDataEntryList)" >保存</button>
+                        <button type="button" class="btn btn-info" ng-click="commitAllData(dealerSalesData)" >提交</button>
+                        <button type="button" class="btn btn-danger" confirm-required="{{dealerSalesData.fid}}" ng-click="deleteDealerSalesData(dealerSalesData)" >删除</button>
+                        <button type="button" class="btn btn-primary" ng-click="return()" >返回</button>
+                    </div>
         </div>
-        <div class="margin-top-5 col-sm-6 col-sm-offset-2" >
-         <form role="form" name="toNoForm" class="form-inline pull-right">
+        <div class="margin-top-5" style="text-align:center">
+         <form role="form" name="toNoForm" class="form-inline">
             <div class="form-group" >
-                    <label class="control-label no-padding-right field-required" for="FBillNo"> 编号:</label>
+                    <label class="control-label no-padding-right field-required" for="FBillNo"> 单据编号:</label>
                         <input type="hidden" ng-model="dealerSalesData.FID">
                         <input type='text' class='form-control'
                                         name='FBillNo'
@@ -20,7 +22,7 @@
                                         autocomplete="off">
             </div>
             <div class="form-group" >
-                <label class="control-label no-padding-right field-required" for="single"> 制单人:</label>
+                <label class="control-label no-padding-right field-required" for="single"> 制单人员:</label>
                     <input type='text' class='form-control'
                                     name='single'
                                     ng-model="dealerSalesData.single"
@@ -39,7 +41,7 @@
             </div>
           <!-- <button type="submit" class="btn btn-default" ng-click="queryDealerSalesData()" >查询</button> -->
         </form>
-        <form role="form" name="toNoForm" class="margin-top-20 form-inline pull-right">
+        <form role="form" name="toNoForm" class="margin-top-20 form-inline">
             <div class="form-group" >
                 <label class="control-label no-padding-right field-required" for="role"> 产品类别:</label>
                     <select class="chosen-select form-control"
@@ -71,7 +73,7 @@
         </form>
       </div>
       </div>  
-<div class="margin-top-20" style="padding:30px 0 10px 0">
+<div class="margin-top-3" style="padding:3px 0 10px 0">
     <table class="table padding-top table-striped border">
         <thead> 
             <tr>
