@@ -58,12 +58,11 @@ exports.commitDealerSalesData=function(req,res){
 	})()
 };
 
- exports.deleteDealerSaleData=function(req,res){
+ exports.deleteResponsibleMaintenance=function(req,res){
 	(async function () {
 		try {
-			await dbDealerSalesDataSvc.deleteDealerSaleData(req.body.dealerSalesData.FID);
-			await dbDealerSalesDataSvc.deleteDealerSaleDataEntry(req.body.dealerSalesData.FID);
-			var list = await dbDealerSalesDataSvc.getDealerSalesDataList(req.body.FBillNo,req.body.FDate,req.body.ProductTypeName);
+			await dbResponsibleMaintenanceSvc.deleteResponsibleMaintenance(req.body.responsibleMaintenance.FID);
+			var list = await dbResponsibleMaintenanceSvc.getResponsibleMaintenanceList(req.body.agentName,req.body.responsibleName);
 			return res.status(200).send(list.recordset);
 		} catch (error) {
 			return res.status(200).send({error:true,message:error.message});

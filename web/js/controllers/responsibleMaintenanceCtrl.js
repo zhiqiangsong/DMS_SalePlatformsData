@@ -93,8 +93,8 @@
                 $scope.adjustmentData();
             });
         };
-        $scope.deleteDealerSalesData=function(responsibleMaintenance){
-            apiSvc.deleteDealerSalesData({responsibleMaintenance:responsibleMaintenance,FDate:$rootScope.FDateQuery,ProductTypeName:$rootScope.productTypeNameQuery,FBillNo:$rootScope.FBillNoQuery}).$promise.then(
+        $scope.deleteResponsibleMaintenance=function(responsibleMaintenance){
+            apiSvc.deleteResponsibleMaintenance({responsibleMaintenance:responsibleMaintenance,agentName:$rootScope.agentRMQuery,responsibleName:$rootScope.responsibleRMQuery}).$promise.then(
                 function(data){
                     $scope.responsibleMaintenanceList = data;
                     $scope.adjustmentData();
@@ -107,16 +107,10 @@
                 }) 
         };
 
-        $scope.queryDealerSalesDataTest=function(){
-            //$scope.temp.dt.setHours($scope.temp.dt.getHours()+8);
-            var dataStr;
-            if($scope.temp.dt != undefined && $scope.temp.dt != "undefined" && $scope.temp.dt != ""){
-                dataStr = $scope.dateToString($scope.temp.dt);
-            }
-            $rootScope.FBillNoQuery = $scope.responsibleMaintenanceSearch.FBillNo;
-            $rootScope.FDateQuery = dataStr;
-            $rootScope.ProductTypeNameQuery = $scope.responsibleMaintenanceSearch.ProductTypeName;
-            apiSvc.getDealerSalesDataList({FBillNo:$scope.responsibleMaintenanceSearch.FBillNo,FDate:dataStr,ProductTypeName:$scope.responsibleMaintenanceSearch.ProductTypeName}).$promise.then(
+        $scope.queryResponsibleMaintenance=function(){
+            $rootScope.agentRMQuery = $scope.responsibleMaintenanceSearch.agent;
+            $rootScope.responsibleRMQuery = $scope.responsibleMaintenanceSearch.responsible;
+            apiSvc.getResponsibleMaintenanceList({agentName:$scope.responsibleMaintenanceSearch.agent,responsibleName:$scope.responsibleMaintenanceSearch.responsible}).$promise.then(
                 function(data){
                     $scope.responsibleMaintenanceList = data;
                     $scope.adjustmentData();

@@ -60,6 +60,7 @@ app.post('/jmapi/get-dealer-sales-data-list.json',auth.authCheck,dealerSalesData
 app.get('/jmapi/get-product-type-list.json',auth.authCheck,commonHandler.getProductTypeList);
 app.post('/jmapi/add-dealer-sale-data.json',auth.authCheck,dealerSalesDataHandler.addDealerSaleData);
 app.post('/jmapi/delete-dealer-sales-data.json',auth.authCheck,dealerSalesDataHandler.deleteDealerSaleData);
+app.post('/jmapi/delete-responsible-maintenance.json',auth.authCheck,responsibleMaintenanceHandler.deleteResponsibleMaintenance);
 app.post('/jmapi/get-product-index-list.json',auth.authCheck,productIndexHandler.getProductIndexList);
 app.post('/jmapi/get-product-index-list.json',auth.authCheck,productIndexHandler.getProductIndexList);
 

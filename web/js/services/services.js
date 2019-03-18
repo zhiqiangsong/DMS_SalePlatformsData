@@ -58,6 +58,13 @@
               },
               isArray:true
             },
+            deleteResponsibleMaintenance:{
+              method: 'POST',
+              params:{
+                type: 'delete-responsible-maintenance'
+              },
+              isArray:true
+            },
             deleteUser:{
               method: 'POST',
               params:{
