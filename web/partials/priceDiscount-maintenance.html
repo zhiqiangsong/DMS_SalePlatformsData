@@ -1,0 +1,251 @@
+<h2 class="text-center" style="padding-top:60px">价格折扣维护</h2>
+<div class="margin-top-5" style="padding:10px 0 5px 0" ng-show="!priceDiscountList">
+        <div class="margin-top-5 col-sm-8 col-sm-offset-2" >
+         <form role="form" name="toNoForm">
+            <div class="form-group" >
+                <label class="col-sm-3 control-label no-padding-right field-required" for="role"> 产品类别:</label>
+                    <select class="chosen-select col-sm-12 form-control"
+                        ng-model="productIndexSearch.ProductTypeName"
+                        name="ProductTypeName"
+                        ng-options="item.FName as item.FName for item in productTypeList"
+                        >
+                        <option value="">选择产品类别</option>
+                    </select>
+            </div> 
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="role"> 请选择年度:</label>      
+            <input type="text" class="form-control" datepicker-popup="yyyy" placeholder="请选择月份" 
+                  datepicker-options="{minMode: 'year'}" 
+                  datepicker-mode="'year'"
+                ng-model="temp.dt" is-open="opened" ng-readonly="true"
+                ng-required="true" close-text="关闭"  ng-click="opened=true" clear-text="清除" current-text='本年'/>
+          </div>
+          <button type="submit" class="btn btn-default" ng-click="submitForm()" ng-disabled="!temp.dt||!productIndexSearch.ProductTypeName">提交</button>
+          <button type="button" class="btn btn-default" ng-click="initData()" confirm-initData ng-disabled="!temp.dt||!productIndexSearch.ProductTypeName">初始化</button>
+        </form>
+      </div>
+      </div>  
+<div class="pull-right" style="padding:0px 100px 10px 0" ng-show="priceDiscountList">
+    <button type="button" class="btn btn-info" ng-click="saveAllData(priceDiscountList)" >保存</button>
+    <button type="button" class="btn btn-primary" ng-click="return()" >返回</button>
+</div>
+<div class="margin-top-20" style="padding:30px 0 10px 0" ng-show="priceDiscountList">
+    
+    <table class="table padding-top table-striped border">
+        <thead> 
+                <tr>
+                        <th class="text-center" width="6%" colspan="4">
+                                <a class="cursor-pointer">
+                                    基础信息
+                                </a>
+                            </th>
+                        <th class="text-center" width="6%" colspan="12">
+                            <a class="cursor-pointer">
+                                指标
+                            </a>
+                        </th>
+                        </tr>
+            <tr>
+            <th class="text-center" width="7%">
+                <a class="cursor-pointer" ng-click="sortType = 'agentNumber'; sortReverse = !sortReverse">
+                经销商代码
+                <span ng-show="sortType == 'agentNumber' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'agentNumber' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="7%">
+                <a class="cursor-pointer" ng-click="sortType = 'agentName'; sortReverse = !sortReverse">
+                经销商名称
+                <span ng-show="sortType == 'agentName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'agentName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="7%">
+                <a class="cursor-pointer" ng-click="sortType = 'ProductTypeName'; sortReverse = !sortReverse">
+                产品类别
+                <span ng-show="sortType == 'ProductTypeName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'ProductTypeName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="7%">
+                <a class="cursor-pointer" ng-click="sortType = 'FYear'; sortReverse = !sortReverse">
+                年份
+                <span ng-show="sortType == 'FYear' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FYear' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Jan'; sortReverse = !sortReverse">
+                    Jan
+                <span ng-show="sortType == 'Jan' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Jan' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Feb'; sortReverse = !sortReverse">
+                    Feb
+                <span ng-show="sortType == 'Feb' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Feb' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Mar'; sortReverse = !sortReverse">
+                    Mar
+                <span ng-show="sortType == 'Mar' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Mar' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Apr'; sortReverse = !sortReverse">
+                    Apr
+                <span ng-show="sortType == 'Apr' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Apr' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'May'; sortReverse = !sortReverse">
+                    May
+                <span ng-show="sortType == 'May' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'May' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Jun'; sortReverse = !sortReverse">
+                    Jun
+                <span ng-show="sortType == 'Jun' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Jun' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Jul'; sortReverse = !sortReverse">
+                    Jul
+                <span ng-show="sortType == 'Jul' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Jul' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Aug'; sortReverse = !sortReverse">
+                    Aug
+                <span ng-show="sortType == 'Aug' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Aug' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Sep'; sortReverse = !sortReverse">
+                    Sep
+                <span ng-show="sortType == 'Sep' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Sep' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Oct'; sortReverse = !sortReverse">
+                    Oct
+                <span ng-show="sortType == 'Oct' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Oct' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Nov'; sortReverse = !sortReverse">
+                    Nov
+                <span ng-show="sortType == 'Nov' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Nov' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center" width="6%">
+                <a class="cursor-pointer" ng-click="sortType = 'Dec'; sortReverse = !sortReverse">
+                    Dec
+                <span ng-show="sortType == 'Dec' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Dec' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            
+            <!-- <th class="text-center">
+                操作
+            </th> -->
+            <!-- <td width="10%" class="text-center">Action</td> -->
+                
+            </tr>
+        </thead> 
+        <tbody>          
+            <tr ng-if="priceDiscountListByPage&&priceDiscountListByPage.length>0" 
+                ng-repeat="(idx,productIndex) in priceDiscountListByPage | orderBy:sortType:sortReverse">
+            
+            
+            <td class="text-center">{{productIndex.agentNumber}}</td>
+            <td class="text-center">{{productIndex.agentName}}</td>
+            <td class="text-center">{{productIndex.productTypeName}}</td>
+            <td class="text-center">{{productIndex.FYear}}</td>
+            <td class="text-center">
+                <input type="number" style="width:120%"  name="{{productIndex.Jan}}" ng-model="productIndex.Jan" value="{{productIndex.Jan}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:120%" name="{{productIndex.Feb}}" ng-model="productIndex.Feb" value="{{productIndex.Feb}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:120%" name="{{productIndex.Mar}}" ng-model="productIndex.Mar" value="{{productIndex.Mar}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:120%" name="{{productIndex.Apr}}" ng-model="productIndex.Apr" value="{{productIndex.Apr}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:120%" name="{{productIndex.May}}" ng-model="productIndex.May" value="{{productIndex.May}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:120%" name="{{productIndex.Jun}}" ng-model="productIndex.Jun" value="{{productIndex.Jun}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:120%" name="{{productIndex.Jul}}" ng-model="productIndex.Jul" value="{{productIndex.Jul}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:120%" name="{{productIndex.Aug}}" ng-model="productIndex.Aug" value="{{productIndex.Aug}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:120%" name="{{productIndex.Sep}}" ng-model="productIndex.Sep" value="{{productIndex.Sep}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:120%" name="{{productIndex.Oct}}" ng-model="productIndex.Oct" value="{{productIndex.Oct}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:120%" name="{{productIndex.Nov}}" ng-model="productIndex.Nov" value="{{productIndex.Nov}}">
+            </td>
+            <td class="text-center">
+                <input type="number" style="width:130%" name="{{productIndex.Dec}}" ng-model="productIndex.Dec" value="{{productIndex.Dec}}">
+            </td>
+            
+            
+            <!-- <td width="8%" class="text-center">{{productIndex.maintainerName}}</td>
+            <td width="8%" class="text-center">{{productIndex.FDate}}</td> -->
+            <!-- <td width="8%" class="text-center">
+                <button type="button" class="btn btn-info btn-xs"  ng-click="addOrEditBusinessPrice(productIndex)">
+                    编辑 
+                </button>
+                <button type="button" class="btn btn-danger btn-xs"  confirm-required="{{productIndex.fid}}" 
+                        ng-click="deleteBusinessPrice(productIndex)">
+                    删除 
+                </button>
+            </td> -->
+        </tr>
+        <tr ng-if="!priceDiscountList||priceDiscountList.length==0">
+            <td colspan="4" class='empty-message'>没有数据.</td>
+        </tr>
+        </tbody> 
+    </table>
+    <div class="margin-top text-center">
+            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    </div>
+    <div class="margin-top text-center">
+        <!-- <button type="button" class="btn btn-success" ng-click="addOrEditBusinessPrice()">
+            <span class="fa fa-plus-circle fa-lg"></span>
+            添加商务价格
+        </button> -->
+        <!--
+        <button type="button" class="btn btn-success" ng-click="copyBusinessPrice()">
+            <span class="fa fa-plus-circle fa-lg"></span>
+            复制数据
+        </button>
+        -->
+    </div>
+</div>
+
+    <pre ng-show="debug">priceDiscountList:{{priceDiscountList | json}}</pre>	
+    <pre ng-show="debug">priceDiscountListByPage:{{priceDiscountListByPage | json}}</pre>	

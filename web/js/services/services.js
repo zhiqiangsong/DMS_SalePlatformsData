@@ -51,6 +51,13 @@
               },
               isArray:true
             },
+            getPriceDiscountList:{
+              method: 'POST',
+              params:{
+                type: 'get-price-discount-list'
+              },
+              isArray:true
+            },
             deleteDealerSalesData:{
               method: 'POST',
               params:{
@@ -132,6 +139,12 @@
               type: "init-product-index-data"
             }
           },
+          initPriceDiscountData:{
+            method: 'POST',
+            params: {
+              type: "init-price-discount-data"
+            }
+          },
           saveDealerSalesData:{
             method: 'POST',
             params:{
@@ -142,6 +155,12 @@
             method: 'POST',
             params:{
               type: 'save-product-index-list'
+            }
+          },
+          savePriceDiscountList:{
+            method: 'POST',
+            params:{
+              type: 'save-price-discount-list'
             }
           },
           getAgent:{

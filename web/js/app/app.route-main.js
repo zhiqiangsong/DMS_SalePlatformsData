@@ -175,6 +175,49 @@
                         }]
                 }
             })
+            .when('/priceDiscountMaintenance/:year?/:ProductTypeName?', {
+                templateUrl: 'partials/priceDiscount-maintenance.html',
+                controller: 'priceDiscountMaintenanceCtrl',
+                resolve:{
+                    productTypeList:['$q','$route','jmService','utilSvc',
+                            function($q,$route,apiSvc,util){
+                                var deferred = $q.defer();
+                                apiSvc.getProductType().$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                },function(err){
+                                    deferred.reject(err);
+                                })
+                                return deferred.promise;
+                            }],
+                        priceDiscountList:['$q','$route','jmService','utilSvc',
+                        function($q,$route,apiSvc,util){
+                            var deferred = $q.defer();
+                            util.pageLoading("start");
+                            if ($route.current.params.year){
+                                apiSvc.getPriceDiscountList({year:$route.current.params.year,ProductTypeName:$route.current.params.ProductTypeName}).$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                    util.pageLoading("stop");
+                                },function(err){
+                                    deferred.reject(err);
+                                    util.pageLoading("stop");
+                                })
+                            }else {
+                                deferred.resolve(undefined)
+                                util.pageLoading("stop");
+                            }
+                            
+                            return deferred.promise;
+                        }]
+                }
+            })
             .when('/dealerSalesDataMaintenance/:FID?', {
                 templateUrl: 'partials/dealerSalesDataMaintenance.html',
                 controller: 'dealerSalesDataMaintenanceCtrl',

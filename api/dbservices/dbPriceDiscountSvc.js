@@ -2,8 +2,8 @@
 
 const sqlSvc=require("./sqlService");
 //get user List
-exports.getProductIndexList=function(FYear,ProductTypeName){
-    var stmt = "select * from dbo.t_BOSProduct_Index  WHere dataType = 1 and FYear=@FYear and ProductTypeName = @ProductTypeName";
+exports.getPriceDiscountList=function(FYear,ProductTypeName){
+    var stmt = "select * from dbo.t_BOSProduct_Index  WHere dataType = 2 and FYear=@FYear and ProductTypeName = @ProductTypeName";
     let paramTypes={};
     let paramValues={};
     paramTypes["FYear"] = 'sql.NVarChar(50)';
@@ -14,32 +14,32 @@ exports.getProductIndexList=function(FYear,ProductTypeName){
   }
   
 
-  exports.initProductIndexData=function(FYear,ProductTypeName){
+  exports.initPriceDiscountData=function(FYear,ProductTypeName){
     let stmt=["exec JM_InitProductIndexDataProfile"];
     stmt.push(`'${FYear}',`),
     stmt.push(`'${ProductTypeName}',`),
-    stmt.push(`1`)
+    stmt.push(`2`)
     return sqlSvc.sqlK3Query(stmt.join(" "))
   }
 
-  exports.saveProductIndexList=function(productIndexList){
-    for(var i=0;i<productIndexList.length;i++){
+  exports.savePriceDiscountList=function(priceDiscountList){
+    for(var i=0;i<priceDiscountList.length;i++){
       let stmtEntry=["exec JM_UpdateProductIndexListProfile"];
-      stmtEntry.push(`${productIndexList[i].FID},`),
-      stmtEntry.push(`${productIndexList[i].Jan},`),
-      stmtEntry.push(`${productIndexList[i].Feb},`),
-      stmtEntry.push(`${productIndexList[i].Mar},`),
-      stmtEntry.push(`${productIndexList[i].Apr},`),
-      stmtEntry.push(`${productIndexList[i].May},`),
-      stmtEntry.push(`${productIndexList[i].Jun},`),
-      stmtEntry.push(`${productIndexList[i].Jul},`),
-      stmtEntry.push(`${productIndexList[i].Aug},`),
-      stmtEntry.push(`${productIndexList[i].Sep},`),
-      stmtEntry.push(`${productIndexList[i].Oct},`),
-      stmtEntry.push(`${productIndexList[i].Nov},`),
-      stmtEntry.push(`${productIndexList[i].Dec}`)
+      stmtEntry.push(`${priceDiscountList[i].FID},`),
+      stmtEntry.push(`${priceDiscountList[i].Jan},`),
+      stmtEntry.push(`${priceDiscountList[i].Feb},`),
+      stmtEntry.push(`${priceDiscountList[i].Mar},`),
+      stmtEntry.push(`${priceDiscountList[i].Apr},`),
+      stmtEntry.push(`${priceDiscountList[i].May},`),
+      stmtEntry.push(`${priceDiscountList[i].Jun},`),
+      stmtEntry.push(`${priceDiscountList[i].Jul},`),
+      stmtEntry.push(`${priceDiscountList[i].Aug},`),
+      stmtEntry.push(`${priceDiscountList[i].Sep},`),
+      stmtEntry.push(`${priceDiscountList[i].Oct},`),
+      stmtEntry.push(`${priceDiscountList[i].Nov},`),
+      stmtEntry.push(`${priceDiscountList[i].Dec}`)
       sqlSvc.sqlK3Query(stmtEntry.join(" "))
-      if((i+1)==productIndexList.length){
+      if((i+1)==priceDiscountList.length){
         return sqlSvc.sqlK3Query(stmtEntry.join(" "))
       }
     }

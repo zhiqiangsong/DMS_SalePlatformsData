@@ -8,7 +8,8 @@ GO
 CREATE PROCEDURE [dbo].[JM_InitProductIndexDataProfile] 
 (
 	@FYear varchar(50),
-	@ProductTypeName varchar(50)
+	@ProductTypeName varchar(50),
+	@DataType int
 )
 AS
 BEGIN
@@ -31,8 +32,8 @@ BEGIN
 				while @@fetch_status =0
 					BEGIN
 						declare @P1 int  exec GetICMaxNum 't_BOSProduct_Index', @P1 output select @FID = @P1 
-						insert into t_BOSProduct_Index(FID,agentId,agentNumber,agentName,ProductTypeID,ProductTypeName,FYear)
-						values(@FID,@FCustID,@DistributorCode,@DistributorName,@ProductTypeID,@ProductTypeName,@FYear)
+						insert into t_BOSProduct_Index(FID,agentId,agentNumber,agentName,ProductTypeID,ProductTypeName,FYear,dataType)
+						values(@FID,@FCustID,@DistributorCode,@DistributorName,@ProductTypeID,@ProductTypeName,@FYear,@DataType)
 						fetch next from CUR_DELARSALESDATA into @FCustID,@DistributorCode,@DistributorName
 					END
 			close CUR_DELARSALESDATA
