@@ -126,6 +126,13 @@
             },
             isArray:true
           },
+          getPlatformSalesDetail:{
+            method: 'POST',
+            params: {
+              type: "get-platform-sales-detail"
+            },
+            isArray:true
+          },
           getResponsibleMaintenanceList:{
             method: 'POST',
             params: {
@@ -167,6 +174,13 @@
             method: 'GET',
             params:{
               type: 'get-agent-list'
+            },
+            isArray:true
+          },
+          getPlatformList:{
+            method: 'GET',
+            params:{
+              type: 'get-platform-list'
             },
             isArray:true
           },
@@ -324,7 +338,7 @@
       ],
       pageMessage:
         {
-          itemPerPage:3,
+          itemPerPage:10,
           currentPage:1,
           maxSize:8
         },

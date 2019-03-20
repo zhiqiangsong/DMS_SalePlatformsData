@@ -45,6 +45,16 @@ exports.getPerformanceReport=function(req,res){
 		}
 	})()
 };
+exports.getPlatformSalesDetail=function(req,res){
+	(async function () {
+		try {
+			let report = await dbCommonSvc.getPlatformSalesDetail(req.body.ProductTypeName,req.body.FDate,req.body.platformResponsibleName,req.body.agent,req.body.platform,req.body.responsibleName);
+			return res.status(200).send(report.recordset);
+		} catch (error) {
+			return res.status(200).send({error:true,message:error.message});
+		}
+	})()
+};
 exports.getProductTypeList=function(req,res){
 	(async function () {
 		try {
@@ -94,6 +104,17 @@ exports.getAgentList=function(req,res){
 	(async function () {
 		try {
 			var list = await dbCommonSvc.getAgentList();
+			return res.status(200).send(list.recordset);
+		} catch (error) {
+			return res.status(200).send({error:true,message:error.message});
+		}
+	})()
+};
+
+exports.getPlatformList=function(req,res){
+	(async function () {
+		try {
+			var list = await dbCommonSvc.getPlatformList();
 			return res.status(200).send(list.recordset);
 		} catch (error) {
 			return res.status(200).send({error:true,message:error.message});

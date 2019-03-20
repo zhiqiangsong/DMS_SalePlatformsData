@@ -28,8 +28,8 @@ BEGIN
 
 
   declare @P1 int  exec GetICMaxNum 't_BOS_DealerSalesData', @P1 output select @FID = @P1   
-  INSERT INTO dbo.t_BOS_DealerSalesData(FID,FClassTypeID,FBillNo,singleId,single,status,ProductTypeID,FDate,note)  
-   VALUES (@FID,1,@FBillNo,17110,'宋志强',0,@ProductTypeID,GETDATE(),@note)  
+  INSERT INTO dbo.t_BOS_DealerSalesData(FID,FClassTypeID,FBillNo,singleId,single,status,ProductTypeID,FDate,note,productTypeName)  
+   VALUES (@FID,1,@FBillNo,17110,'宋志强',0,@ProductTypeID,GETDATE(),@note,@ProductTypeName)  
 
  declare CUR_DELARSALESDATA CURSOR
  FOR

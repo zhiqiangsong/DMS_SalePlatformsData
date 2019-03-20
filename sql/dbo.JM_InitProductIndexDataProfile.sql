@@ -20,7 +20,7 @@ BEGIN
  declare @DistributorName nvarchar(50)
   select @ProductTypeID = FInterID from t_SubMessage where FTypeID = 10008 and FName = @ProductTypeName 
 
-	IF NOT EXISTS (SELECT * from dbo.t_BOSProduct_Index where FYear = @FYear and ProductTypeName = @ProductTypeName )
+	IF NOT EXISTS (SELECT * from dbo.t_BOSProduct_Index where FYear = @FYear and ProductTypeName = @ProductTypeName and datatype = @DataType )
 		BEGIN
 			declare CUR_DELARSALESDATA CURSOR
 			FOR

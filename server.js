@@ -67,13 +67,18 @@ app.post('/jmapi/get-price-discount-list.json',auth.authCheck,priceDiscountHandl
 
 app.post('/jmapi/get-dealerSalesData.json',auth.authCheck,dealerSalesDataHandler.getDealerSalesData);
 app.post('/jmapi/get-dealerSalesDataEntry-list.json',auth.authCheck,dealerSalesDataHandler.getDealerSalesDataEntryList);
+
+app.post('/jmapi/get-platform-sales-detail.json',auth.authCheck,commonHandler.getPlatformSalesDetail);
+
 app.post('/jmapi/get-responsibleMaintenance-list.json',auth.authCheck,responsibleMaintenanceHandler.getResponsibleMaintenanceList);
 app.post('/jmapi/save-dealer-sales-data.json',auth.authCheck,dealerSalesDataHandler.saveDealerSalesData);
+app.post('/jmapi/commit-dealer-sales-data.json',auth.authCheck,dealerSalesDataHandler.commitDealerSalesData);
 app.post('/jmapi/save-product-index-list.json',auth.authCheck,productIndexHandler.saveProductIndexList);
 app.post('/jmapi/save-price-discount-list.json',auth.authCheck,priceDiscountHandler.savePriceDiscountList);
 app.post('/jmapi/init-price-discount-data.json',auth.authCheck,priceDiscountHandler.initPriceDiscountData);
 app.post('/jmapi/init-product-index-data.json',auth.authCheck,productIndexHandler.initProductIndexData);
 app.get('/jmapi/get-agent-list.json',auth.authCheck,commonHandler.getAgentList);
+app.get('/jmapi/get-platform-list.json',auth.authCheck,commonHandler.getPlatformList);
 app.get('/jmapi/get-responsible-list.json',auth.authCheck,commonHandler.getResponsibleList);
 
 app.post('/jmapi/add-edit-responsible-maintenance.json',auth.authCheck,responsibleMaintenanceHandler.addEditResponsibleMaintenance);

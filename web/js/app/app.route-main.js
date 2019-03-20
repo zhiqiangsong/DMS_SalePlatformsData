@@ -280,6 +280,71 @@
                         }]
                 }
             })
+            .when('/platformSalesDetailReport', {
+                templateUrl: 'partials/platformSalesDetailReport.html',
+                controller: 'platformSalesDetailCtrl',
+                resolve:{
+                    productTypeList:['$q','jmService',
+                            function($q,apiSvc){
+                                var deferred = $q.defer();
+                                apiSvc.getProductType().$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                },function(err){
+                                    deferred.reject(err);
+                                })
+                                return deferred.promise;
+                            }],
+                            agentList:['$q','jmService',
+                            function($q,apiSvc){
+                                var deferred = $q.defer();
+                                apiSvc.getAgent().$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                },function(err){
+                                    deferred.reject(err);
+                                })
+                                return deferred.promise;
+                        }],
+                        platformList:['$q','jmService',
+                        function($q,apiSvc){
+                            var deferred = $q.defer();
+                            apiSvc.getPlatformList().$promise.then(function(data){
+                                if (data){
+                                    deferred.resolve(data);
+                                } else {
+                                    deferred.resolve(undefined);
+                                }
+                            },function(err){
+                                deferred.reject(err);
+                            })
+                            return deferred.promise;
+                        }],
+                        responsibleList:['$q','jmService','utilSvc',
+                        function($q,apiSvc,util){
+                            var deferred = $q.defer();
+                            util.pageLoading("start");
+                            apiSvc.getResponsibleList().$promise.then(function(data){
+                                if (data){
+                                    deferred.resolve(data);
+                                } else {
+                                    deferred.resolve(undefined);
+                                }
+                                util.pageLoading("stop");
+                            },function(err){
+                                deferred.reject(err);
+                                util.pageLoading("stop");
+                            })
+                            return deferred.promise;
+                        }]
+                }
+            })
             .when('/admin', {
                 templateUrl: 'partials/admin.html',
                 controller: 'adminCtrl',
