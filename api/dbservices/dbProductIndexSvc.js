@@ -37,7 +37,12 @@ exports.getProductIndexList=function(FYear,ProductTypeName){
       stmtEntry.push(`${productIndexList[i].Sep},`),
       stmtEntry.push(`${productIndexList[i].Oct},`),
       stmtEntry.push(`${productIndexList[i].Nov},`),
-      stmtEntry.push(`${productIndexList[i].Dec}`)
+      stmtEntry.push(`${productIndexList[i].Dec},`),
+      stmtEntry.push(`${productIndexList[i].annual},`),
+      stmtEntry.push(`${productIndexList[i].firstQuarter},`),
+      stmtEntry.push(`${productIndexList[i].secondQuarter},`),
+      stmtEntry.push(`${productIndexList[i].thirdQuarter},`),
+      stmtEntry.push(`${productIndexList[i].fourthQuarter}`)
       sqlSvc.sqlK3Query(stmtEntry.join(" "))
       if((i+1)==productIndexList.length){
         return sqlSvc.sqlK3Query(stmtEntry.join(" "))

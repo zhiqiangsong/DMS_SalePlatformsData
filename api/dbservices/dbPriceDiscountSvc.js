@@ -37,7 +37,12 @@ exports.getPriceDiscountList=function(FYear,ProductTypeName){
       stmtEntry.push(`${priceDiscountList[i].Sep},`),
       stmtEntry.push(`${priceDiscountList[i].Oct},`),
       stmtEntry.push(`${priceDiscountList[i].Nov},`),
-      stmtEntry.push(`${priceDiscountList[i].Dec}`)
+      stmtEntry.push(`${priceDiscountList[i].Dec},`),
+      stmtEntry.push(`${priceDiscountList[i].annual},`),
+      stmtEntry.push(`${priceDiscountList[i].firstQuarter},`),
+      stmtEntry.push(`${priceDiscountList[i].secondQuarter},`),
+      stmtEntry.push(`${priceDiscountList[i].thirdQuarter},`),
+      stmtEntry.push(`${priceDiscountList[i].fourthQuarter}`)
       sqlSvc.sqlK3Query(stmtEntry.join(" "))
       if((i+1)==priceDiscountList.length){
         return sqlSvc.sqlK3Query(stmtEntry.join(" "))

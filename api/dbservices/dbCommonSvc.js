@@ -119,6 +119,7 @@ const sqlSvc=require("./sqlService");
       paramTypes["responsibleName"] = 'sql.NVarChar(50)';
       paramValues["responsibleName"] = responsibleName;
     }
+    stmt += " order  by  FNamePla,dataYear,dataMonth,productTypeName"
     return sqlSvc.sqlK3Query(stmt,paramTypes,paramValues);
   } 
   

@@ -25,12 +25,17 @@ create PROCEDURE [dbo].[JM_UpdateProductIndexListProfile]
  @Sep decimal(23, 10),
  @Oct decimal(23, 10),
  @Nov decimal(23, 10),
- @Dec decimal(23, 10)
+ @Dec decimal(23, 10),
+ @annual decimal(23, 10),
+ @firstQuarter decimal(23, 10),
+ @secondQuarter decimal(23, 10),
+ @thirdQuarter decimal(23, 10),
+ @fourthQuarter decimal(23, 10)
 )  
 AS  
 BEGIN  
   
    
-   update dbo.t_BOSProduct_Index set Jan=@Jan,Feb=@Feb,Mar=@Mar,Apr=@Apr,May=@May,Jun=@Jun,Jul=@Jul,Aug=@Aug,Sep=@Sep,Oct=@Oct,Nov=@Nov,Dec=@Dec where FID = @FID
+   update dbo.t_BOSProduct_Index set Jan=@Jan,Feb=@Feb,Mar=@Mar,Apr=@Apr,May=@May,Jun=@Jun,Jul=@Jul,Aug=@Aug,Sep=@Sep,Oct=@Oct,Nov=@Nov,Dec=@Dec,annual=@annual,firstQuarter=@firstQuarter,secondQuarter=@secondQuarter,thirdQuarter=@thirdQuarter,fourthQuarter=@fourthQuarter where FID = @FID
  
 END  
