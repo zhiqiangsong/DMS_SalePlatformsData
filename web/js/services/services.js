@@ -133,6 +133,13 @@
             },
             isArray:true
           },
+          getPlatformSalesMatrix:{
+            method: 'POST',
+            params: {
+              type: "get-platform-sales-matrix"
+            },
+            isArray:true
+          },
           getResponsibleMaintenanceList:{
             method: 'POST',
             params: {

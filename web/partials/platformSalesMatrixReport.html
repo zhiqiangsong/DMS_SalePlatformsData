@@ -1,0 +1,295 @@
+<h2 class="text-center" style="padding-top:20px">平台销售明细报表</h2>
+<div class="margin-top-5" style="padding:20px 0 10px 0">
+        <div class="container">
+                <div class="pull-right margin-right-300">
+                        <button type="submit" class="btn btn-info" ng-disabled="!PlatformSalesMatrixl.FDate" ng-click="queryPlatformSalesDetail()" >查询</button>
+                        <button type="button" class="btn btn-primary" ng-click="return()" >返回</button>
+                    </div>
+        </div>
+        <div class="margin-top-5" style="text-align:center">
+         <form role="form" name="toNoForm" class="form-inline">
+
+            <div class="form-group" >
+                <label class="control-label no-padding-right field-required" for="role"> 产品类别:</label>
+                    <select class="chosen-select form-control"
+                        ng-model="PlatformSalesMatrixl.ProductTypeName"
+                        name="ProductTypeName"
+                        ng-options="item.FName as item.FName for item in productTypeList"
+                        >
+                        <option value="">选择产品类别</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label no-padding-right field-required" for="role"> 年月:</label>      
+                <input type="text" class="form-control" datepicker-popup="yyyy-MM" placeholder="请选择月份" 
+                      datepicker-options="{minMode: 'month'}" 
+                      datepicker-mode="'month'"
+                    ng-model="PlatformSalesMatrixl.FDate" is-open="opened" ng-readonly="true"
+                    ng-required="true" close-text="关闭"  ng-click="opened=true" clear-text="清除" current-text='本月'/>
+              </div>
+              <div class="form-group">
+                <label class="control-label no-padding-right field-required" for="role"> 平台负责人:</label>
+                     <input type='text' class='form-control'
+                                     name='platformResponsibleName'
+                                     class='full-width form-control'
+                                     ng-model="PlatformSalesMatrixl.platformResponsibleName"
+                                     typeahead="item.FName as item.FName for item in responsibleList|filter:$viewValue|limitTo:12"
+                                     placeholder="选择负责人"
+                                     typeahead-editable="false"
+                                     autocomplete="off">
+              </div>
+        </form>
+        <form role="form" name="toNoForm" class="margin-top-20 form-inline">
+            <div class="form-group">
+                <label class="control-label no-padding-right field-required" for="role"> 二级经销商:</label>
+                     <input type='text' class='form-control'
+                                     name='platform'
+                                     class='full-width form-control'
+                                     ng-model="PlatformSalesMatrixl.agent"
+                                     typeahead="item.FName as item.FName for item in agentList|filter:$viewValue|limitTo:12"
+                                     placeholder="选择代理商"
+                                     typeahead-editable="false"
+                                     autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="control-label no-padding-right field-required" for="role"> 平台:</label>
+                     <input type='text' class='form-control'
+                                     name='platform'
+                                     class='full-width form-control'
+                                     ng-model="PlatformSalesMatrixl.platform"
+                                     typeahead="item.FName as item.FName for item in platformList|filter:$viewValue|limitTo:12"
+                                     placeholder="选择代理商"
+                                     typeahead-editable="false"
+                                     autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="control-label no-padding-right field-required" for="role"> 商务负责人:</label>
+                     <input type='text' class='form-control'
+                                     name='responsibleName'
+                                     class='full-width form-control'
+                                     ng-model="PlatformSalesMatrixl.responsibleName"
+                                     typeahead="item.FName as item.FName for item in responsibleList|filter:$viewValue|limitTo:12"
+                                     placeholder="选择负责人"
+                                     typeahead-editable="false"
+                                     autocomplete="off">
+              </div>
+        </form>
+      </div>
+      </div>  
+<div class="margin-top-3" style="padding:3px 0 10px 0">
+    <table class="table padding-top table-striped border">
+        <thead> 
+            <tr>
+                    <th class="text-center" width="6%" colspan="7">
+                            <a class="cursor-pointer">
+                                基础信息
+                            </a>
+                    </th>
+                    <th class="text-center" width="6%" colspan="4">
+                            <a class="cursor-pointer">
+                                年度
+                            </a>
+                    </th>
+                    <th class="text-center" width="6%" colspan="5">
+                        <a class="cursor-pointer">
+                            季度
+                        </a>
+                    </th>
+                    <th class="text-center" width="6%" colspan="3">
+                            <a class="cursor-pointer">
+                                月份
+                            </a>
+                    </th>
+            </tr>
+            <tr>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FNumber'; sortReverse = !sortReverse">
+                经销商代码
+                <span ng-show="sortType == 'FNumber' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FNumber' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'agentName'; sortReverse = !sortReverse">
+                经销商名称
+                <span ng-show="sortType == 'agentName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'agentName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'productTypeName'; sortReverse = !sortReverse">
+                产品类别
+                <span ng-show="sortType == 'productTypeName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'productTypeName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'oldName'; sortReverse = !sortReverse">
+                曾用名称
+                <span ng-show="sortType == 'oldName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'oldName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FNamePla'; sortReverse = !sortReverse">
+                所属平台
+                <span ng-show="sortType == 'FNamePla' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FNamePla' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'responsibleNamePla'; sortReverse = !sortReverse">
+                平台负责人
+                <span ng-show="sortType == 'responsibleNamePla' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'responsibleNamePla' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'responsibleName'; sortReverse = !sortReverse">
+                吉威商务负责人
+                <span ng-show="sortType == 'responsibleName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'responsibleName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'dataYear'; sortReverse = !sortReverse">
+                年
+                <span ng-show="sortType == 'dataYear' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'dataYear' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'annual'; sortReverse = !sortReverse">
+                指标
+                <span ng-show="sortType == 'annual' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'annual' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'sumSaleroom'; sortReverse = !sortReverse">
+                达成额
+                <span ng-show="sortType == 'sumSaleroom' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'sumSaleroom' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'annualYield'; sortReverse = !sortReverse">
+                达成率
+                <span ng-show="sortType == 'annualYield' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'annualYield' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'oldPrice'; sortReverse = !sortReverse">
+                原单价
+                <span ng-show="sortType == 'oldPrice' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'oldPrice' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'quarterIndicators'; sortReverse = !sortReverse">
+                指标
+                <span ng-show="sortType == 'quarterIndicators' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'quarterIndicators' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'quarterSaleRoom'; sortReverse = !sortReverse">
+                达成金额
+                <span ng-show="sortType == 'quarterSaleRoom' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'quarterSaleRoom' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'quarterCompletionRate'; sortReverse = !sortReverse">
+                达成率
+                <span ng-show="sortType == 'quarterCompletionRate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'quarterCompletionRate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'quarterDiscountPrice'; sortReverse = !sortReverse">
+                折扣单价
+                <span ng-show="sortType == 'quarterDiscountPrice' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'quarterDiscountPrice' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'one'; sortReverse = !sortReverse">
+                第一个月
+                <span ng-show="sortType == 'one' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'one' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'two'; sortReverse = !sortReverse">
+                第二个月
+                <span ng-show="sortType == 'two' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'two' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'three'; sortReverse = !sortReverse">
+                第三个月
+                <span ng-show="sortType == 'three' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'three' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            </tr>
+        </thead> 
+        <tbody>          
+            <tr ng-if="PlatformSalesMatrixlListByPage&&PlatformSalesMatrixlListByPage.length>0" 
+                ng-repeat="(idx,PlatformSalesMatrixl) in PlatformSalesMatrixlListByPage | orderBy:sortType:sortReverse">
+
+                <td class="text-center">{{PlatformSalesMatrixl.FNumber}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.agentName}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.productTypeName}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.oldName}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.FNamePla}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.responsibleNamePla}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.responsibleName}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.dataYear}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.annual}}</td>
+
+                <td class="text-center">{{PlatformSalesMatrixl.sumSaleroom}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.annualYield}}</td>
+
+                <td class="text-center">{{PlatformSalesMatrixl.oldPrice}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.quarterIndicators}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.quarterSaleRoom}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.quarterCompletionRate}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.quarterDiscountPrice}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.one}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.two}}</td>
+                <td class="text-center">{{PlatformSalesMatrixl.three}}</td>
+            </tr>
+            <tr ng-if="!PlatformSalesMatrixlList||PlatformSalesMatrixlList.length==0">
+                <td colspan="4" class='empty-message'>没有数据.</td>
+            </tr>
+        </tbody> 
+        <!-- <tfoot>
+            <tr> 
+                <td  class="text-center">合计:</td>
+                <td  class="text-center"></td>
+                <td  class="text-center"></td>
+                <td  class="text-center">{{countSalesVolume}}</td>
+                <td  class="text-center">{{countSaleroom}}</td>
+                <td  class="text-center"></td>
+            </tr>
+        </tfoot> -->
+    </table>
+    <div class="margin-top text-center">
+            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    </div>
+</div>
+
+<pre ng-show="debug">PlatformSalesMatrixl:{{PlatformSalesMatrixl | json}}</pre>		
+
+    <pre ng-show="debug">PlatformSalesMatrixlList:{{PlatformSalesMatrixlList | json}}</pre>	
+<!--     <pre ng-show="debug">PlatformSalesMatrixlListByPage:{{PlatformSalesMatrixlListByPage | json}}</pre>	 -->

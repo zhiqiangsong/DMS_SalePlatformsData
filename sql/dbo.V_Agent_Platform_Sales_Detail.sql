@@ -59,9 +59,9 @@ and tbde1.FDateEnd = (
 	SELECT MAX(tbde2.FDateEnd)
 	FROM t_BOS_DealerSalesDataEntry2 tbde2
 	inner join t_BOS_DealerSalesData tbd2 on  tbd2.FID = tbde2.fid
-	WHERE tbd2.status = 1  and tbde1.agentId = tbde2.agentId and tbd1.productTypeId = tbd2.productTypeId and month(tbde1.FDateEnd) = month(tbde2.FDateEnd)
+	WHERE tbd2.status = 1  and tbde1.agentId = tbde2.agentId and tbd1.productTypeId = tbd2.productTypeId and month(tbde1.FDateEnd) = month(tbde2.FDateEnd) and year(tbde1.FDateEnd) = year(tbde2.FDateEnd)
 )
-ORDER BY tbde1.agentId,tbd1.productTypeId,month(tbde1.FDateEnd)) tt
+ORDER BY year(tbde1.FDateEnd),tbde1.agentId,tbd1.productTypeId,month(tbde1.FDateEnd)) tt
 left join t_BOSProduct_Index tbi on tbi.agentId = tt.agentId and tbi.productTypeId = tt.productTypeId and tbi.FYear = year(tt.FDateEnd) and tbi.dataType=1
 left join  V_Agent_Platform vap on vap.FItemID = tt.agentId
 left join t_BOSResponsible_Maintenance tbmPla on tbmPla.agentId = vap.FItemIDPla

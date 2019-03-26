@@ -55,6 +55,16 @@ exports.getPlatformSalesDetail=function(req,res){
 		}
 	})()
 };
+exports.getPlatformSalesMatrix=function(req,res){
+	(async function () {
+		try {
+			let report = await dbCommonSvc.getPlatformSalesMatrix(req.body.ProductTypeName,req.body.FDate,req.body.platformResponsibleName,req.body.agent,req.body.platform,req.body.responsibleName);
+			return res.status(200).send(report.recordset);
+		} catch (error) {
+			return res.status(200).send({error:true,message:error.message});
+		}
+	})()
+};
 exports.getProductTypeList=function(req,res){
 	(async function () {
 		try {

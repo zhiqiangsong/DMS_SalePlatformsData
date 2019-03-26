@@ -69,6 +69,7 @@ app.post('/jmapi/get-dealerSalesData.json',auth.authCheck,dealerSalesDataHandler
 app.post('/jmapi/get-dealerSalesDataEntry-list.json',auth.authCheck,dealerSalesDataHandler.getDealerSalesDataEntryList);
 
 app.post('/jmapi/get-platform-sales-detail.json',auth.authCheck,commonHandler.getPlatformSalesDetail);
+app.post('/jmapi/get-platform-sales-matrix.json',auth.authCheck,commonHandler.getPlatformSalesMatrix);
 
 app.post('/jmapi/get-responsibleMaintenance-list.json',auth.authCheck,responsibleMaintenanceHandler.getResponsibleMaintenanceList);
 app.post('/jmapi/save-dealer-sales-data.json',auth.authCheck,dealerSalesDataHandler.saveDealerSalesData);
