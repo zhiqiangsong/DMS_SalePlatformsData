@@ -4,6 +4,9 @@
                 <div class="pull-right margin-right-300">
                         <button type="submit" class="btn btn-info" ng-disabled="!PlatformSalesMatrixl.FDate" ng-click="queryPlatformSalesDetail()" >查询</button>
                         <button type="button" class="btn btn-primary" ng-click="return()" >返回</button>
+                        <span ng-show="PlatformSalesMatrixl.FDate">
+                            <a href="/jmapi/get-annual-sales-and-archive-rpt-excel.json?date={{dateToString(PlatformSalesMatrixl.FDate)}}&ProductTypeName={{PlatformSalesMatrixl.ProductTypeName}}">Excel下载</a>
+                        </span>
                     </div>
         </div>
         <div class="margin-top-5" style="text-align:center">

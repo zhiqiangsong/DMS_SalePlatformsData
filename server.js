@@ -49,7 +49,7 @@ var dealerSalesDataHandler = require('./api/handlers/dealerSalesDataHandler');
 var productIndexHandler = require('./api/handlers/productIndexHandler');
 var priceDiscountHandler = require('./api/handlers/priceDiscountHandler');
 var responsibleMaintenanceHandler = require('./api/handlers/responsibleMaintenanceHandler');
-
+var annualSalesAndArchiveHandler = require('./api/handlers/dbAnnualSalesAndArchiveRptHandler');
 //var dealerSalesDataHandler = require('./api/handlers/dealerSalesDataHandler');
 app.get('/jmapi/get-user-list.json',auth.adminCheck,commonHandler.getUserList);
 app.post('/jmapi/add-edit-user.json',auth.adminCheck,commonHandler.addEditUser);
@@ -81,9 +81,8 @@ app.post('/jmapi/init-product-index-data.json',auth.authCheck,productIndexHandle
 app.get('/jmapi/get-agent-list.json',auth.authCheck,commonHandler.getAgentList);
 app.get('/jmapi/get-platform-list.json',auth.authCheck,commonHandler.getPlatformList);
 app.get('/jmapi/get-responsible-list.json',auth.authCheck,commonHandler.getResponsibleList);
-
 app.post('/jmapi/add-edit-responsible-maintenance.json',auth.authCheck,responsibleMaintenanceHandler.addEditResponsibleMaintenance);
-
+app.get('/jmapi/get-annual-sales-and-archive-rpt-excel.json',auth.authCheck,annualSalesAndArchiveHandler.getAnnualSalesAndArchiveRptExcel);
 /* app.post('/jmapi/get-performance-report.json',commonHandler.getPerformanceReport);
 app.post('/jmapi/get-dealer-sales-data-list.json',dealerSalesDataHandler.getDealerSalesDataList);
 app.get('/jmapi/get-product-type-list.json',commonHandler.getProductTypeList);

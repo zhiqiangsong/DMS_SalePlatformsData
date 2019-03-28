@@ -17,6 +17,17 @@
 
         $scope.PlatformSalesMatrixlList={};
 
+        // $scope.PlatformSalesMatrixl.FDateTmp="";
+        // if($scope.PlatformSalesMatrixl.FDate != undefined && $scope.PlatformSalesMatrixl.FDate != "undefined" && $scope.PlatformSalesMatrixl.FDate != ""){
+        //     $scope.PlatformSalesMatrixl.FDateTmp = $scope.dateToString($scope.PlatformSalesMatrixl.FDate);
+        // };
+
+
+        // //for excel export url
+        // $scope.temp.dt= $rootScope.dateQuery ;
+        // $scope.saleForecastSearch.ProductTypeName=$rootScope.productTypeNameQuery ;
+        // $scope.saleForecastSearch.FHospName=$rootScope.fHospNameQuery ;
+
          $scope.queryPlatformSalesDetail=function(){
             var dataStr;
             if($scope.PlatformSalesMatrixl.FDate != undefined && $scope.PlatformSalesMatrixl.FDate != "undefined" && $scope.PlatformSalesMatrixl.FDate != ""){
