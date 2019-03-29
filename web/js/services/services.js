@@ -349,7 +349,7 @@
           currentPage:1,
           maxSize:8
         },
-      userRoles:["superAdmin","admin","normal"],
+      userRoles:["superAdmin","admin","normal","agent","businessDirector"],
       units:[
         {id:"IN",display:"inch"},
         {id:"BOT",display:"BT"},

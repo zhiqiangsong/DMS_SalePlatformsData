@@ -15,7 +15,7 @@
           <i class="fa fa-minus-circle"></i> {{error.text}}
         </div>
         
-        <div class="form-group" ng-class="{'has-error':duplicateUserID}">
+        <div class="form-group" ng-class="{'has-error':duplicateUserID}" style="display:none">
           <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 用户ID </label>
           <div class="col-sm-6">
                <input type='text' class='col-sm-12 form-control'
@@ -32,19 +32,6 @@
           <label class="col-sm-3 no-margin-x margin-top-5" for="name" ng-show="duplicateUserID"> 用户ID已经存在</label>
         </div>
    
-          <div class="form-group" >
-              <label class="col-sm-3 control-label no-padding-right field-required" for="role"> 所在域:</label>
-              <div class="col-sm-6">
-                  <select class="chosen-select col-sm-12 form-control"
-                      ng-model="user.Domain"
-                      name="domain"
-                      ng-options="item as item for item in ['BITSG','JWMS','BESA','BBV']"
-                      >
-                      <option value="">选择所在域</option>
-                  </select>
-                  <!-- <div ng-if="authUser.UserRole!=='superAdmin'" class="margin-top-5" style="font-size:16px;font-weight:bold">{{user.UserRole}}</div> -->
-              </div>
-            </div>             
         <div class="form-group">
           <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 用户姓名</label>
           <div class="col-sm-6">
@@ -94,7 +81,7 @@
 
   <div class="modal-footer text-center">
     <button type="submit" class="btn btn-primary" ng-click="submit()" 
-      ng-disabled="!user.UserID||!user.userName||!user.isActive||duplicateUserID">
+      ng-disabled="!user.userName||!user.isActive||duplicateUserID">
       提交
     </button>
     <button type="button" class="btn btn-default" ng-click="reset()">

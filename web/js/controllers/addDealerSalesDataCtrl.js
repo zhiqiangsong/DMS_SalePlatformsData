@@ -12,6 +12,8 @@
             }
     	 	$scope.submit=function(){
                 //$scope.businessPrice.maintainerName = $rootScope.authUser.userName;
+                debugger;
+                $scope.dealerSalesData.userName = $rootScope.authUser.userName;
                 apiSvc.addDealerSalesData({dealerSalesData:$scope.dealerSalesData})
                 .$promise.then(function(dealerSalesDataList){
                     if (dealerSalesDataList){

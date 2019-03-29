@@ -56,11 +56,12 @@
                                 })
                                 return deferred.promise;
                             }],
-                    dealerSalesDataList:['$q','$route','jmService','utilSvc',
-                        function($q,$route,apiSvc,util){
+                    dealerSalesDataList:['$q','$route','jmService','utilSvc','$rootScope',
+                        function($q,$route,apiSvc,util,$rootScope){
                             var deferred = $q.defer();
                             util.pageLoading("start");
                             if (true){
+                                debugger;
                                 apiSvc.getDealerSalesDataList().$promise.then(function(data){
                                     if (data){
                                         deferred.resolve(data);

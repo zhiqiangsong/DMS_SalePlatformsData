@@ -18,13 +18,6 @@
                     </a>
                 </th>
                 <th class="text-center">
-                    <a class="cursor-pointer" ng-click="sortType = 'Domain'; sortReverse = !sortReverse">
-                    所在域
-                    <span ng-show="sortType == 'Domain' && !sortReverse" class="fa fa-caret-down"></span>
-                    <span ng-show="sortType == 'Domain' && sortReverse" class="fa fa-caret-up"></span>
-                    </a>
-                </th>
-                <th class="text-center">
                     <a class="cursor-pointer" ng-click="sortType = 'UserRole'; sortReverse = !sortReverse">
                     用户角色
                     <span ng-show="sortType == 'UserRole' && !sortReverse" class="fa fa-caret-down"></span>
@@ -51,7 +44,6 @@
 
                 <td width="16%" class="text-center">{{user.UserID}}</td>
                 <td width="16%" class="text-center">{{user.userName}}</td>
-                <td width="16%" class="text-center">{{user.Domain}}</td>
                 <td width="16%" class="text-center">{{user.UserRole}}</td>
                 <td width="16%" class="text-center">{{(user.isActive==='1')?'Active':'Inactive'}}</td>
                 <td width="16%" class="text-center">

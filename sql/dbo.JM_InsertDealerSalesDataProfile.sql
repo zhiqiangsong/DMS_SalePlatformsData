@@ -8,6 +8,7 @@ CREATE PROCEDURE [dbo].[JM_InsertDealerSalesDataProfile]
 (  
  @FBillNo nvarchar(255),  
  @ProductTypeName nvarchar(50),
+ @userName nvarchar(50),
  @note nvarchar(50)
 )  
 AS  
@@ -20,16 +21,18 @@ BEGIN
  declare @FIDN int
  declare @ProductTypeID int  
  declare @FCustID int
+ declare @platformId int
  declare @DistributorCode nvarchar(50)
  declare @DistributorName nvarchar(50)
  select @ProductTypeID = FInterID from t_SubMessage where FTypeID = 10008 and FName = @ProductTypeName  
+ select @platformId = FUserID from t_user where FName = @userName
   
 
 
 
   declare @P1 int  exec GetICMaxNum 't_BOS_DealerSalesData', @P1 output select @FID = @P1   
-  INSERT INTO dbo.t_BOS_DealerSalesData(FID,FClassTypeID,FBillNo,singleId,single,status,ProductTypeID,FDate,note,productTypeName)  
-   VALUES (@FID,1,@FBillNo,17110,'宋志强',0,@ProductTypeID,GETDATE(),@note,@ProductTypeName)  
+  INSERT INTO dbo.t_BOS_DealerSalesData(FID,FClassTypeID,FBillNo,singleId,single,status,ProductTypeID,FDate,note,productTypeName,platformId,platformName)  
+   VALUES (@FID,1,@FBillNo,17110,'宋志强',0,@ProductTypeID,GETDATE(),@note,@ProductTypeName,@platformId,@userName)  
 
  declare CUR_DELARSALESDATA CURSOR
  FOR

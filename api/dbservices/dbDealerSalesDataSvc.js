@@ -24,7 +24,7 @@ const sqlSvc=require("./sqlService");
     return sqlSvc.sqlK3Query(stmt,paramTypes,paramValues);
   } */
 
-  exports.getDealerSalesDataList=function(FBillNo,FDate,ProductTypeName){
+  exports.getDealerSalesDataList=function(UserRole,userName,FBillNo,FDate,ProductTypeName){
     var stmt = "select aa.*,case aa.status when 0 then '已保存' when 1 then '已提交' else '异常数据' end as statusZN,bb.FName as ProductTypeName from dbo.t_BOS_DealerSalesData aa inner join t_SubMessage bb on aa.productTypeId = bb.FInterID and bb.FTypeID = 10008 where 1=1 ";
     let paramTypes={};
     let paramValues={};
@@ -42,6 +42,11 @@ const sqlSvc=require("./sqlService");
       stmt += " and bb.FName = @ProductTypeName";
       paramTypes["ProductTypeName"] = 'sql.NVarChar(50)';
       paramValues["ProductTypeName"] = ProductTypeName;
+    }
+    if(UserRole == "agent"){
+      stmt += " and aa.platformName = @userName";
+      paramTypes["userName"] = 'sql.NVarChar(50)';
+      paramValues["userName"] = userName;
     }
     return sqlSvc.sqlK3Query(stmt,paramTypes,paramValues);
   } 
@@ -80,7 +85,8 @@ const sqlSvc=require("./sqlService");
     let stmt=["exec JM_InsertDealerSalesDataProfile"];
    
     stmt.push(`'${dealerSalesData.FBillNo}',`),
-    stmt.push(`'${dealerSalesData.ProductTypeName}',`)
+    stmt.push(`'${dealerSalesData.ProductTypeName}',`),
+    stmt.push(`'${dealerSalesData.userName}',`),
     stmt.push(`'${dealerSalesData.note}'`)
     return sqlSvc.sqlK3Query(stmt.join(" "))
   }
