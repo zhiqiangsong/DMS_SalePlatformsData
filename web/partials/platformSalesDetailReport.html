@@ -2,7 +2,7 @@
 <div class="margin-top-5" style="padding:20px 0 10px 0">
         <div class="container">
                 <div class="pull-right margin-right-300">
-                        <button type="submit" class="btn btn-info" ng-click="queryPlatformSalesDetail()" >查询</button>
+                        <button type="submit" class="btn btn-info" ng-disabled="!platformSalesDetail.FDate" ng-click="queryPlatformSalesDetail()" >查询</button>
                         <button type="button" class="btn btn-primary" ng-click="return()" >返回</button>
                     </div>
         </div>

@@ -83,7 +83,7 @@ const sqlSvc=require("./sqlService");
   }
 
   exports.getPlatformSalesDetail=function(ProductTypeName,FDate,platformResponsibleName,agent,platform,responsibleName){
-    var stmt = "select * from V_Agent_Platform_Sales_Detail where 1=1 ";
+    var stmt = "select * from V_Agent_Platform_Sales_Detail_2 where 1=1 ";
     let paramTypes={};
     let paramValues={};
     if(ProductTypeName != undefined && ProductTypeName != "undefined" && ProductTypeName != ""){
@@ -127,7 +127,9 @@ const sqlSvc=require("./sqlService");
 
   exports.getPlatformSalesMatrix=function(ProductTypeName,FDate,platformResponsibleName,agent,platform,responsibleName){
     
-    let stmt=["exec JM_QueryAgentPlatformSalesMatrixProfile"];
+    //let stmt=["exec JM_QueryAgentPlatformSalesMatrixProfile"];
+    let stmt=["exec PROC_Sales_Rpt_UnderPlatForm"];
+
    
     ProductTypeName = exports.initdata(ProductTypeName);
     platformResponsibleName = exports.initdata(platformResponsibleName);
