@@ -28,7 +28,7 @@ exports.deleteUser=function(req,res){
 	(async function () {
 		try {
 			await dbCommonSvc.deleteUserProfile(req.body.user.UserID);
-			var list = await dbCommonSvc.getUserList(req.session.user.Domain);
+			var list = await dbCommonSvc.getUserList();
 			return res.status(200).send(list.recordset);
 		} catch (error) {
 			return res.status(200).send({error:true,message:error.message});

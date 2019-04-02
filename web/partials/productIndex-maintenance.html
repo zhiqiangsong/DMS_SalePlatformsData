@@ -12,16 +12,26 @@
                         <option value="">选择产品类别</option>
                     </select>
             </div> 
+            <div class="form-group" >
+                <label class="col-sm-3 control-label no-padding-right field-required" for="role"> 平台名称:</label>
+                    <select class="chosen-select col-sm-12 form-control"
+                        ng-model="productIndexSearch.platformName"
+                        name="platformName"
+                        ng-options="item.FName as item.FName for item in platformList"
+                        >
+                        <option value="">选择平台名称</option>
+                    </select>
+            </div>
           <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right field-required" for="role"> 请选择年度:</label>      
-            <input type="text" class="form-control" datepicker-popup="yyyy" placeholder="请选择月份" 
+            <input type="text" class="form-control" datepicker-popup="yyyy" placeholder="请选择年度" 
                   datepicker-options="{minMode: 'year'}" 
                   datepicker-mode="'year'"
                 ng-model="temp.dt" is-open="opened" ng-readonly="true"
                 ng-required="true" close-text="关闭"  ng-click="opened=true" clear-text="清除" current-text='本年'/>
           </div>
           <button type="submit" class="btn btn-default" ng-click="submitForm()" ng-disabled="!temp.dt||!productIndexSearch.ProductTypeName">提交</button>
-          <button type="button" class="btn btn-default" ng-click="initData()" confirm-initData ng-disabled="!temp.dt||!productIndexSearch.ProductTypeName">初始化</button>
+          <!-- <button type="button" class="btn btn-default" ng-click="initData()" confirm-initData ng-disabled="!temp.dt||!productIndexSearch.ProductTypeName">初始化</button> -->
         </form>
       </div>
       </div>  

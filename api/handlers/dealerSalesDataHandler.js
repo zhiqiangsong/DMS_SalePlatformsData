@@ -63,7 +63,7 @@ exports.commitDealerSalesData=function(req,res){
 		try {
 			await dbDealerSalesDataSvc.deleteDealerSaleData(req.body.dealerSalesData.FID);
 			await dbDealerSalesDataSvc.deleteDealerSaleDataEntry(req.body.dealerSalesData.FID);
-			var list = await dbDealerSalesDataSvc.getDealerSalesDataList(req.body.FBillNo,req.body.FDate,req.body.ProductTypeName);
+			var list = await dbDealerSalesDataSvc.getDealerSalesDataList(req.session.user.UserRole,req.session.user.userName,req.body.FBillNo,req.body.FDate,req.body.ProductTypeName);
 			return res.status(200).send(list.recordset);
 		} catch (error) {
 			return res.status(200).send({error:true,message:error.message});
@@ -75,6 +75,7 @@ exports.commitDealerSalesData=function(req,res){
 exports.addDealerSaleData=function(req,res){
 	(async function () {
 		try {
+			req.body.dealerSalesData.single = req.session.user.userName;
 			var list = await dbDealerSalesDataSvc.addDealerSalesData(req.body.dealerSalesData);
 			return res.status(200).send(list.recordset);
 		} catch (error) {

@@ -107,7 +107,7 @@
     <div class="margin-top text-center">
             <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
     </div>
-    <div class="margin-top text-center">
+    <div class="margin-top text-center" ng-show="authUser&&(authUser.UserRole==='agent')">
         <button type="button" class="btn btn-success" ng-click="addDealerSalesData()">
             <span class="fa fa-plus-circle fa-lg"></span>
             添加销售数据

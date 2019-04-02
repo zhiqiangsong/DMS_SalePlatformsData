@@ -50,7 +50,7 @@
                     <button type="button" class="btn btn-info btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1" ng-click="addOrEditUser(user)">
                         编辑 
                     </button>
-                    <button type="button" class="btn btn-danger btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1" confirm-required="{{user.UserID}}" 
+                    <button type="button" class="btn btn-danger btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1" confirm-required="{{user.userName}}" 
                             ng-click="deleteUser(user)">
                         删除 
                     </button>

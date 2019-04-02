@@ -3,8 +3,8 @@
     'use strict';
     /* Controllers */
     angular.module('jm.controllers')
-    .controller('productIndexMaintenanceCtrl',['$scope','$rootScope','$location','$modal','productIndexList','productTypeList','utilSvc','jmService','constants',
-	function($scope,$rootScope,$location,$modal,productIndexList,productTypeList,utilSvc,apiSvc,constants){
+    .controller('productIndexMaintenanceCtrl',['$scope','$rootScope','$location','$modal','productIndexList','productTypeList','platformList','utilSvc','jmService','constants',
+	function($scope,$rootScope,$location,$modal,productIndexList,productTypeList,platformList,utilSvc,apiSvc,constants){
         $scope.temp={};
         $scope.productIndexSearch={};
         if (productIndexList){
@@ -33,17 +33,19 @@
             $scope.pageChanged();
         } else {
             $scope.productTypeList = productTypeList;
+            $scope.platformList = platformList;
             $scope.clear = function () {
             $scope.temp.dt = null;
             };
             $scope.submitForm = function() {
-            var dateQuery=undefined;
-            if($scope.temp.dt!=undefined){
-                dateQuery=utilSvc.formatYear($scope.temp.dt);
-            }                
-            $location.path("/productIndexMaintenance/"+dateQuery+"/"+$scope.productIndexSearch.ProductTypeName);
-            $rootScope.dateQuery = dateQuery;
-            $rootScope.productTypeNameQuery = $scope.productIndexSearch.ProductTypeName;
+                var dateQuery=undefined;
+                if($scope.temp.dt!=undefined){
+                    dateQuery=utilSvc.formatYear($scope.temp.dt);
+                }                
+                $location.path("/productIndexMaintenance/"+dateQuery+"/"+$scope.productIndexSearch.ProductTypeName+"/"+$scope.productIndexSearch.platformName);
+                $rootScope.dateQuery = dateQuery;
+                $rootScope.productTypeNameQuery = $scope.productIndexSearch.ProductTypeName;
+                $rootScope.platformNameQuery = $scope.productIndexSearch.platformNameQuery;
             }
             $scope.initData = function() {
                 var dateQuery=undefined;
@@ -76,7 +78,8 @@
                     productIndexList:function(){return $scope.productIndexList},
                     hospitalList:function(){return hospitalList},
                     agentList:function(){return agentList},
-                    productTypeList:function(){return productTypeList}
+                    productTypeList:function(){return productTypeList},
+                    platformList:function(){return platformList}
                 }
             });
             modalInstance.result.then(function(productIndexList) {

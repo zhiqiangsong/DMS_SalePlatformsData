@@ -14,10 +14,11 @@ exports.getProductIndexList=function(FYear,ProductTypeName){
   }
   
 
-  exports.initProductIndexData=function(FYear,ProductTypeName){
+  exports.initProductIndexData=function(FYear,ProductTypeName,platformName){
     let stmt=["exec JM_InitProductIndexDataProfile"];
     stmt.push(`'${FYear}',`),
     stmt.push(`'${ProductTypeName}',`),
+    stmt.push(`'${platformName}',`),
     stmt.push(`1`)
     return sqlSvc.sqlK3Query(stmt.join(" "))
   }

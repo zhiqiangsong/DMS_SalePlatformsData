@@ -14,10 +14,11 @@ exports.getPriceDiscountList=function(FYear,ProductTypeName){
   }
   
 
-  exports.initPriceDiscountData=function(FYear,ProductTypeName){
+  exports.initPriceDiscountData=function(FYear,ProductTypeName,platformName){
     let stmt=["exec JM_InitProductIndexDataProfile"];
     stmt.push(`'${FYear}',`),
     stmt.push(`'${ProductTypeName}',`),
+    stmt.push(`'${platformName}',`),
     stmt.push(`2`)
     return sqlSvc.sqlK3Query(stmt.join(" "))
   }

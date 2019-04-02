@@ -2,11 +2,11 @@
 
 const sqlSvc=require("./sqlService");
   //get user List
-  exports.getUserList=function(domain){
+  exports.getUserList=function(){
     var stmt = "select * from dbo.UserDMSProfile";
     // var stmt = "select * from dbo.UserProfile where DOMAIN=@DOMAIN";
-    let paramTypes={DOMAIN:'sql.VarChar(20)'};
-    let paramValues={DOMAIN:domain};
+    let paramTypes={};
+    let paramValues={};
     return sqlSvc.sqlQuery(stmt,paramTypes,paramValues);
   }
 
@@ -40,8 +40,8 @@ const sqlSvc=require("./sqlService");
     return sqlSvc.callStoredProcedure("dbo.JM_InsertOrUpdateUserDMSProfile",params);
   }
   exports.deleteUserProfile=function(userId){
-    var stmt = "delete from dbo.UserProfile where UserID=@UserID";
-    let paramTypes={UserID:'sql.VarChar(20)'};
+    var stmt = "delete from dbo.UserDMSProfile where UserID=@UserID";
+    let paramTypes={UserID:'sql.Int'};
     let paramValues={UserID:userId};
     return sqlSvc.sqlQuery(stmt,paramTypes,paramValues)
   }

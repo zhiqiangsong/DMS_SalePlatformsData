@@ -133,7 +133,7 @@
                             }]
                 }
             })
-            .when('/productIndexMaintenance/:year?/:ProductTypeName?', {
+            .when('/productIndexMaintenance/:year?/:ProductTypeName?/:platformName?', {
                 templateUrl: 'partials/productIndex-maintenance.html',
                 controller: 'productIndexMaintenanceCtrl',
                 resolve:{
@@ -151,12 +151,26 @@
                                 })
                                 return deferred.promise;
                             }],
+                            platformList:['$q','jmService',
+                            function($q,apiSvc){
+                                var deferred = $q.defer();
+                                apiSvc.getPlatformList().$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                },function(err){
+                                    deferred.reject(err);
+                                })
+                                return deferred.promise;
+                            }],
                         productIndexList:['$q','$route','jmService','utilSvc',
                         function($q,$route,apiSvc,util){
                             var deferred = $q.defer();
                             util.pageLoading("start");
                             if ($route.current.params.year){
-                                apiSvc.getProductIndexList({year:$route.current.params.year,ProductTypeName:$route.current.params.ProductTypeName}).$promise.then(function(data){
+                                apiSvc.getProductIndexList({year:$route.current.params.year,ProductTypeName:$route.current.params.ProductTypeName,platformName:$route.current.params.platformName}).$promise.then(function(data){
                                     if (data){
                                         deferred.resolve(data);
                                     } else {
@@ -176,7 +190,7 @@
                         }]
                 }
             })
-            .when('/priceDiscountMaintenance/:year?/:ProductTypeName?', {
+            .when('/priceDiscountMaintenance/:year?/:ProductTypeName?/:platformName?', {
                 templateUrl: 'partials/priceDiscount-maintenance.html',
                 controller: 'priceDiscountMaintenanceCtrl',
                 resolve:{
@@ -194,12 +208,26 @@
                                 })
                                 return deferred.promise;
                             }],
+                            platformList:['$q','jmService',
+                            function($q,apiSvc){
+                                var deferred = $q.defer();
+                                apiSvc.getPlatformList().$promise.then(function(data){
+                                    if (data){
+                                        deferred.resolve(data);
+                                    } else {
+                                        deferred.resolve(undefined);
+                                    }
+                                },function(err){
+                                    deferred.reject(err);
+                                })
+                                return deferred.promise;
+                            }],
                         priceDiscountList:['$q','$route','jmService','utilSvc',
                         function($q,$route,apiSvc,util){
                             var deferred = $q.defer();
                             util.pageLoading("start");
                             if ($route.current.params.year){
-                                apiSvc.getPriceDiscountList({year:$route.current.params.year,ProductTypeName:$route.current.params.ProductTypeName}).$promise.then(function(data){
+                                apiSvc.getPriceDiscountList({year:$route.current.params.year,ProductTypeName:$route.current.params.ProductTypeName,platformName:$route.current.params.platformName}).$promise.then(function(data){
                                     if (data){
                                         deferred.resolve(data);
                                     } else {

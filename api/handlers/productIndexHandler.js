@@ -5,7 +5,7 @@ var Promise = require('Promise').default
 exports.getProductIndexList=function(req,res){
 	(async function () {
 		try {
-			var list = await dbProductIndexSvc.getProductIndexList(req.body.year,req.body.ProductTypeName);
+			var list = await dbProductIndexSvc.initProductIndexData(req.body.year,req.body.ProductTypeName,req.body.platformName);
 			return res.status(200).send(list.recordset);
 		} catch (error) {
 			return res.status(200).send({error:true,message:error.message});

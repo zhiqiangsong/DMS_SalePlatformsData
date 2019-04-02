@@ -87,6 +87,7 @@ const sqlSvc=require("./sqlService");
     stmt.push(`'${dealerSalesData.FBillNo}',`),
     stmt.push(`'${dealerSalesData.ProductTypeName}',`),
     stmt.push(`'${dealerSalesData.userName}',`),
+    stmt.push(`'${dealerSalesData.single}',`),
     stmt.push(`'${dealerSalesData.note}'`)
     return sqlSvc.sqlK3Query(stmt.join(" "))
   }
@@ -107,6 +108,9 @@ const sqlSvc=require("./sqlService");
 
     for(var i=0;i<dealerSalesDataEntryList.length;i++){
       let stmtEntry=["exec JM_UpdateDealerSalesDataEntryProfile"];
+      if(dealerSalesDataEntryList[i].FDateEnd==null||dealerSalesDataEntryList[i].FDateEnd=='null'||dealerSalesDataEntryList[i].FDateEnd=='undefined'){
+        dealerSalesDataEntryList[i].FDateEnd='';
+      }
       stmtEntry.push(`${dealerSalesDataEntryList[i].FEntryID},`),
       stmtEntry.push(`'${dealerSalesDataEntryList[i].FDateEnd}',`),
       stmtEntry.push(`${dealerSalesDataEntryList[i].salesVolume},`),

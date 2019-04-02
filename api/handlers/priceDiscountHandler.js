@@ -5,7 +5,7 @@ var Promise = require('Promise').default
 exports.getPriceDiscountList=function(req,res){
 	(async function () {
 		try {
-			var list = await dbPriceDiscountSvc.getPriceDiscountList(req.body.year,req.body.ProductTypeName);
+			var list = await dbPriceDiscountSvc.initPriceDiscountData(req.body.year,req.body.ProductTypeName,req.body.platformName);
 			return res.status(200).send(list.recordset);
 		} catch (error) {
 			return res.status(200).send({error:true,message:error.message});

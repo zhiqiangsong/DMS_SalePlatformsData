@@ -7,7 +7,7 @@
 CREATE PROCEDURE [dbo].[JM_UpdateDealerSalesDataEntryProfile]   
 (  
  @FEntryID INT,
- @endDate datetime,  
+ @endDate nvarchar(50),  
  @salesVolume decimal(23, 10),
  @saleroom decimal(23, 10),
  @remark nvarchar(50)
