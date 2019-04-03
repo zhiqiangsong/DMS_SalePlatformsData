@@ -47,6 +47,9 @@
                 <td width="16%" class="text-center">{{user.UserRole}}</td>
                 <td width="16%" class="text-center">{{(user.isActive==='1')?'Active':'Inactive'}}</td>
                 <td width="16%" class="text-center">
+                    <!-- <button type="button" class="btn btn-info btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1||authUser.UserRole==='businessDirector'" ng-click="addOrEditUser(user)">
+                        编辑 
+                    </button> -->
                     <button type="button" class="btn btn-info btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1" ng-click="addOrEditUser(user)">
                         编辑 
                     </button>
@@ -68,5 +71,5 @@
             </button>
         </div>
     </div>
-
+{{authUser.UserRole}}
     <pre ng-show="debug">userList:{{userList | json}}</pre>	

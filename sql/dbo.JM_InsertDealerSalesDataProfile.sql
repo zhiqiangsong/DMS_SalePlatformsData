@@ -59,8 +59,8 @@ select too.FItemID,too.FNumber,too.FName from t_BOSPT tb inner join t_BOSPTEntry
  close CUR_DELARSALESDATA
  deallocate CUR_DELARSALESDATA
  --SELECT * FROM dbo.t_BOS_DealerSalesData  
- select aa.*,case aa.status when 0 then '已保存' when 1 then '已提交' else '异常数据' end as statusZN,bb.FName as ProductTypeName from dbo.t_BOS_DealerSalesData aa inner join t_SubMessage bb on aa.productTypeId = bb.FInterID and bb.FTypeID = 10008 where 1=1 and platformName=@userName 
- 
+ --select aa.*,case aa.status when 0 then '已保存' when 1 then '已提交' else '异常数据' end as statusZN,bb.FName as ProductTypeName from dbo.t_BOS_DealerSalesData aa inner join t_SubMessage bb on aa.productTypeId = bb.FInterID and bb.FTypeID = 10008 where 1=1 and platformName=@userName 
+ SELECT * FROM dbo.t_BOS_DealerSalesData  where FID = @FID
  IF @@ERROR <> 0 
 
 	ROLLBACK TRANSACTION

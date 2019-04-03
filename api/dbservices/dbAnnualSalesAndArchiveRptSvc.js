@@ -2,27 +2,29 @@
 
 const sqlSvc=require("./sqlService");
 
-exports.getAnnualSalesAndArchiveRpt = function(date,ProductTypeName){  
-    //P_BudgetAndIncomeDetailQuery '2017','12'  ,'支架系统','hospName'  
+exports.getAnnualSalesAndArchiveRpt = function(ProductTypeName,FDate,platformResponsibleName,agent,platform,responsibleName){  
+  let stmt=["exec PROC_Sales_Rpt_UnderPlatForm"];
 
-    var date = new Date(date);
-    var year =date.getFullYear();
-    // var month =date.getMonth()+1;
-    var productTypeName="";
-    // var hospName="";
-    // if(FHospName != undefined && FHospName != "undefined"){
-    //   hospName=FHospName;
-    // }
-    if(ProductTypeName != undefined && ProductTypeName != "undefined"&& ProductTypeName != ""){
-      productTypeName=ProductTypeName;
-    }   
-  
-    let stmt = ["exec dbo.PROC_Sales_Rpt_UnderPlatform "];
-   // stmt.push(`${saleForecast.FID},`),
-    stmt.push(`${year},`);
-    // stmt.push(`${month},`);
-     stmt.push(`'${productTypeName}'`);
-    // stmt.push(`'${hospName}'`);
-    return sqlSvc.sqlK3Query(stmt.join(" "));
+   
+  ProductTypeName = exports.initdata(ProductTypeName);
+  platformResponsibleName = exports.initdata(platformResponsibleName);
+  agent = exports.initdata(agent);
+  platform = exports.initdata(platform);
+  responsibleName = exports.initdata(responsibleName);
+  stmt.push(`'${ProductTypeName}',`),
+  stmt.push(`'${FDate}',`),
+  stmt.push(`'${platformResponsibleName}',`),
+  stmt.push(`'${agent}',`),
+  stmt.push(`'${platform}',`),
+  stmt.push(`'${responsibleName}'`)
+  return sqlSvc.sqlK3Query(stmt.join(" "))
 
+  }
+
+  exports.initdata=function(data){
+    if(data==null||data == undefined||data == "undefined"){
+      return "";
+    } else {
+      return data;
+    }
   }

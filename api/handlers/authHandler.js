@@ -31,6 +31,13 @@ exports.adminCheck=function(req, res, next) {
 	  else
 	    return res.sendStatus(401);
 };
+exports.adminOrbusinessCheck=function(req, res, next) {
+	if (req.session&&req.session.user&&
+		 (req.session.user.UserRole.indexOf("Admin")!==-1||req.session.user.UserRole.indexOf("businessDirector")!==-1))
+	 next();
+	else
+		return res.sendStatus(401);
+};
 exports.loginOld=function(req, res) {
 	session=req.session;
 	fullUsername=req.body.domain+"\\"+req.body.username;

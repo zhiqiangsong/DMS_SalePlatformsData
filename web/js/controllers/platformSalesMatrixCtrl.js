@@ -32,6 +32,7 @@
             var dataStr;
             if($scope.PlatformSalesMatrixl.FDate != undefined && $scope.PlatformSalesMatrixl.FDate != "undefined" && $scope.PlatformSalesMatrixl.FDate != ""){
                 dataStr = $scope.dateToString($scope.PlatformSalesMatrixl.FDate);
+                $scope.PlatformSalesMatrixl.dataStr = dataStr;
             }
             apiSvc.getPlatformSalesMatrix({ProductTypeName:$scope.PlatformSalesMatrixl.ProductTypeName,FDate:dataStr,platformResponsibleName:$scope.PlatformSalesMatrixl.platformResponsibleName,agent:$scope.PlatformSalesMatrixl.agent,platform:$scope.PlatformSalesMatrixl.platform,responsibleName:$scope.PlatformSalesMatrixl.responsibleName}).$promise.then(
                 function(data){

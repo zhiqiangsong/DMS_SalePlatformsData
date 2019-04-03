@@ -77,7 +77,7 @@ exports.addDealerSaleData=function(req,res){
 		try {
 			req.body.dealerSalesData.single = req.session.user.userName;
 			var list = await dbDealerSalesDataSvc.addDealerSalesData(req.body.dealerSalesData);
-			return res.status(200).send(list.recordset);
+			return res.status(200).send(list.recordset[0]);
 		} catch (error) {
 			return res.status(200).send({error:true,message:error.message});
 		}

@@ -42,7 +42,7 @@
               params:{
                 type: 'add-dealer-sale-data'
               },
-              isArray:true
+              isArray:false
             },
             getProductIndexList:{
               method: 'POST',
@@ -349,7 +349,7 @@
           currentPage:1,
           maxSize:8
         },
-      userRoles:["superAdmin","admin","normal","agent","businessDirector"],
+      userRoles:["agent","businessDirector","businessLeader","admin","superAdmin"],
       units:[
         {id:"IN",display:"inch"},
         {id:"BOT",display:"BT"},

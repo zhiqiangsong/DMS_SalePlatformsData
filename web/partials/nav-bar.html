@@ -29,7 +29,7 @@
               报表
             </a> 
           </li>
-          <li> 
+          <li ng-show="authUser&&authUser.UserRole!='businessLeader'"> 
             <a href="#/dealerSalesData" active-link="active" > 
               经销商销售数据
             </a> 
@@ -49,12 +49,12 @@
               负责人维护
             </a> 
           </li>
-          <li ng-show="authUser&&(authUser.UserRole==='superAdmin'||authUser.UserRole==='admin'||authUser.UserRole==='normal'||authUser.UserRole==='businessDirector')"> 
+          <li ng-show="authUser&&(authUser.UserRole==='superAdmin'||authUser.UserRole==='admin'||authUser.UserRole==='businessLeader'||authUser.UserRole==='businessDirector')"> 
             <a href="#/platformSalesDetailReport" active-link="active" > 
               平台销售明细报表
             </a> 
           </li>
-          <li ng-show="authUser&&(authUser.UserRole==='superAdmin'||authUser.UserRole==='admin'||authUser.UserRole==='normal'||authUser.UserRole==='businessDirector')"> 
+          <li ng-show="authUser&&(authUser.UserRole==='superAdmin'||authUser.UserRole==='admin'||authUser.UserRole==='businessLeader'||authUser.UserRole==='businessDirector')"> 
             <a href="#/platformSalesMatrixReport" active-link="active" > 
               平台销售矩阵报表
             </a> 
@@ -90,7 +90,7 @@
                   </a>
                 </li>
                 <!--endRemoveIf(production)-->
-                <li ng-show="authUser&&(authUser.UserRole.indexOf('Admin')!==-1)"> 
+                <li ng-show="authUser&&(authUser.UserRole.indexOf('Admin')!==-1||authUser.UserRole==='businessDirector')"> 
                   <a href="#/admin" active-link="active">
                     <span class="fa fa-universal-access fa-lg"></span>
                     用户管理

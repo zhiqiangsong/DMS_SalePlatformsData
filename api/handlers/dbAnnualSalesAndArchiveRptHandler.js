@@ -7,10 +7,10 @@ exports.getAnnualSalesAndArchiveRptExcel=function(req,res){
 	var nodeExcel = require('excel-export');
 	(async function () {
 		try {
-			//var list = await dbSaleForecastSvc.getSaleForecastList(req.body.date,req.body.FHospName,req.body.ProductTypeName);
-            var list = await dbAnnualSalesAndArchiveSvc.getAnnualSalesAndArchiveRpt(req.query.date,req.query.ProductTypeName);
+            //var list = await dbSaleForecastSvc.getSaleForecastList(req.body.date,req.body.FHospName,req.body.ProductTypeName);
+            var list = await dbAnnualSalesAndArchiveSvc.getAnnualSalesAndArchiveRpt(req.query.ProductTypeName,req.query.FDate,req.query.platformResponsibleName,req.query.agent,req.query.platform,req.query.responsibleName);
             
-			var conf={};
+			/* var conf={};
 			conf.cols = [];
 			conf.cols.push({caption:'经销商代码 ' 	,captionStyleIndex: 1, type:'string' }); 
 			conf.cols.push({caption:'经销商名称  '	,captionStyleIndex: 1, type:'string' }); 
@@ -99,7 +99,55 @@ exports.getAnnualSalesAndArchiveRptExcel=function(req,res){
                 row.push(list.recordset[i].M12_saleAmt);    
 
 				conf.rows.push(row);
-			}		
+            } */	
+            var conf={};
+			conf.cols = [];
+			conf.cols.push({caption:'经销商代码 ' 	,captionStyleIndex: 1, type:'string' }); 
+			conf.cols.push({caption:'经销商名称  '	,captionStyleIndex: 1, type:'string' }); 
+			conf.cols.push({caption:'产品类别 ' 	,captionStyleIndex: 1, type:'string' }); 
+            conf.cols.push({caption:'曾用名' 	,captionStyleIndex: 1, type:'string' }); 
+            conf.cols.push({caption:'所属平台' 	,captionStyleIndex: 1, type:'string' }); 
+			conf.cols.push({caption:'平台负责人 ' 	,captionStyleIndex: 1, type:'string' }); 
+            conf.cols.push({caption:'吉威商务负责人'	,captionStyleIndex: 1, type:'string' });
+            conf.cols.push({caption:'年度' 	,captionStyleIndex: 1, type:'number' });  
+			conf.cols.push({caption:'年指标' 	,captionStyleIndex: 1, type:'number' }); 
+            conf.cols.push({caption:'年达成' 	,captionStyleIndex: 1, type:'number' }); 
+            conf.cols.push({caption:'年达成率' 	,captionStyleIndex: 1, type:'number' }); 
+            //Q1
+            conf.cols.push({caption:'原单价' 	,captionStyleIndex: 1, type:'number' }); 
+            conf.cols.push({caption:'季度指标' 	,captionStyleIndex: 1, type:'number' }); 
+            conf.cols.push({caption:'季度达成金额' 	,captionStyleIndex: 1, type:'number' }); 
+            conf.cols.push({caption:'季度达成率' 	,captionStyleIndex: 1, type:'number' }); 
+            //Q2
+            conf.cols.push({caption:'折扣单价' 	,captionStyleIndex: 1, type:'number' }); 
+            conf.cols.push({caption:'第一个月' 	,captionStyleIndex: 1, type:'number' }); 
+            conf.cols.push({caption:'第二个月' 	,captionStyleIndex: 1, type:'number' }); 
+            conf.cols.push({caption:'第三个月' 	,captionStyleIndex: 1, type:'number' }); 
+			conf.rows = [];
+			for(var i=0;i<list.recordset.length;i++){
+				var row = [];
+				row.push(list.recordset[i].FNumber);
+				row.push(list.recordset[i].agentName);
+				row.push(list.recordset[i].productTypeName);
+				row.push(list.recordset[i].oldName);
+				row.push(list.recordset[i].FNamePla);
+                row.push(list.recordset[i].responsibleNamePla);
+                row.push(list.recordset[i].responsibleName);
+                row.push(list.recordset[i].dataYear);
+				row.push(list.recordset[i].annual);
+                row.push(list.recordset[i].sumSaleroom);
+                row.push(list.recordset[i].annualYield);
+                row.push(list.recordset[i].oldPrice);
+                row.push(list.recordset[i].quarterIndicators);
+                row.push(list.recordset[i].quarterSaleRoom);
+                row.push(list.recordset[i].quarterCompletionRate);
+                row.push(list.recordset[i].quarterDiscountPrice);
+                row.push(list.recordset[i].one);
+                row.push(list.recordset[i].two);    
+                row.push(list.recordset[i].three);
+
+				conf.rows.push(row);
+			}	
 			var result = nodeExcel.execute(conf);
 			res.setHeader('Content-Type', 'application/vnd.openxmlformats');
 			res.setHeader("Content-Disposition", "attachment; filename=" + "JwmsAnnualReport.xlsx");

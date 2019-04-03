@@ -37,7 +37,7 @@
                 $scope.user.isActive=($scope.user.isActive===undefined)?'1':$scope.user.isActive;
                 $scope.user.DefaultWH=$scope.user.DefaultWH||$rootScope.authUser.DefaultWH;
                 $scope.user.Domain=$scope.user.Domain||$rootScope.authUser.Domain;
-                $scope.user.UserRole=$scope.user.UserRole||"normal";
+                $scope.user.UserRole=$scope.user.UserRole||"agent";
                 if ($rootScope.authUser.UserRole==="qaAdmin"){
                     $scope.user.UserRole="qaLab";
                     $scope.roleFilter="qa";

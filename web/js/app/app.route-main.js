@@ -61,7 +61,6 @@
                             var deferred = $q.defer();
                             util.pageLoading("start");
                             if (true){
-                                debugger;
                                 apiSvc.getDealerSalesDataList().$promise.then(function(data){
                                     if (data){
                                         deferred.resolve(data);
