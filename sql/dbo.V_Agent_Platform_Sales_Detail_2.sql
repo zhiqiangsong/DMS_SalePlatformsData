@@ -4,7 +4,7 @@ IF EXISTS (SELECT * FROM SYSOBJECTS WHERE name = 'V_Agent_Platform_Sales_Detail_
 create view V_Agent_Platform_Sales_Detail_2
 as
 SELECT     vap.FItemID AS agentID, vap.FNumber AS agentNumber, vap.FName AS agentName, ISNULL(prdTbi.FInterID, 0) AS productTypeID, ISNULL(prdTbi.FName, '') AS productTypeName, '' AS usedName, 
-                      vap.FNamePla, tbmPla.responsibleName AS responsibleNamePla, tbm.responsibleName, ISNULL(tbi.FYear, 0) AS dataYear, ISNULL(tbi.FMonth, 0) AS dataMonth, 0 AS oldPrice, 
+                      vap.FNamePla, tbmPla.responsibleName AS responsibleNamePla, case when tbm.responsibleName is null then '' else tbm.responsibleName end as responsibleName, ISNULL(tbi.FYear, 0) AS dataYear, ISNULL(tbi.FMonth, 0) AS dataMonth, 0 AS oldPrice, 
                       CASE WHEN tbi.FMonth IN (1, 2, 3) THEN 1 WHEN tbi.FMonth IN (4, 5, 6) THEN 2 WHEN tbi.FMonth IN (7, 8, 9) THEN 3 WHEN tbi.FMonth IN (10, 11, 12) THEN 4 WHEN ISNULL(tbi.FMonth, 0) 
                       = 0 THEN 0 END AS FQuartor, ISNULL(tbi.FValue, 0) AS targetValue, ISNULL(tt.saleroom, 0) AS saleroom, ISNULL(tt.saleroom, 0) / NULLIF (tbi.FValue, 0) AS yieldRate, ISNULL(tbiDis.FValue, 0) 
                       AS discountPrice, tt.FDateEnd

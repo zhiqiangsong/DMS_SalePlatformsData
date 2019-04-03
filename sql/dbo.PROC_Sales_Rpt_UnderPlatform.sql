@@ -141,7 +141,7 @@ And (productTypeName like '%' +@ProductTypeName+'%')
 And (responsibleNamePla like '%' +@platformResponsibleName+'%')
 And (agentName like '%' +@agent+'%')
 And (FnamePla like '%' +@platform+'%')
-And (responsibleName like '%' +@responsibleName+'%' or responsibleName is null)
+And (responsibleName like '%' +@responsibleName+'%')
 Group By   dataYear,productTypeName, agentID,agentNumber,agentName,productTypeID,responsibleName,
 usedName,FnamePla ,responsibleNamePla) tt
  
