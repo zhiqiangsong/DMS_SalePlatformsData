@@ -1,6 +1,6 @@
 USE [JWMS_TEST]
 GO
-/****** Object:  StoredProcedure [dbo].[JM_InitProductIndexDataProfile]    Script Date: 13/03/2019 2:36:30 PM ******/
+/****** Object:  StoredProcedure [dbo].[JM_InitProductIndexDataProfile]    Script Date: 04/04/2019 09:04:37 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -21,7 +21,7 @@ BEGIN
  declare @DistributorName nvarchar(50)
   select @ProductTypeID = FInterID from t_SubMessage where FTypeID = 10008 and FName = @ProductTypeName 
 
-	IF NOT EXISTS (SELECT * from dbo.t_BOSProduct_Index where FYear = @FYear and ProductTypeName = @ProductTypeName and datatype = @DataType )
+	IF NOT EXISTS (SELECT * from dbo.t_BOSProduct_Index where FYear = @FYear and ProductTypeName = @ProductTypeName and datatype = @DataType and platformName = @platformName )
 		BEGIN
 			declare CUR_DELARSALESDATA CURSOR
 			FOR
@@ -33,7 +33,7 @@ BEGIN
 			inner join t_Organization too on tbo.FJXSID = too.FItemID
 			inner join t_Organization tooPla on tb.Fcustid = tooPla.FItemID
 			--inner join t_User tu on tu.FDescription = tooPla.FNumber
-			where tooPla.FName = @platformName
+			where tooPla.FName = @platformName 
 
 			open CUR_DELARSALESDATA
 			fetch next from CUR_DELARSALESDATA into @FCustID,@DistributorCode,@DistributorName

@@ -15,10 +15,8 @@
                 $scope.dealerSalesData.userName = $rootScope.authUser.userName;
                 apiSvc.addDealerSalesData({dealerSalesData:$scope.dealerSalesData})
                 .$promise.then(function(dealerSalesData){
-                    debugger;
                     if (dealerSalesData){
                         $modalInstance.close(dealerSalesDataList);
-                        debugger;
                         $location.path("/dealerSalesDataMaintenance/"+dealerSalesData.FID);
                     } else {
                         utilSvc.addAlert("The Operation failed!", "fail", false);

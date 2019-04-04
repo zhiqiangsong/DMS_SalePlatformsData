@@ -50,7 +50,7 @@
                     <!-- <button type="button" class="btn btn-info btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1||authUser.UserRole==='businessDirector'" ng-click="addOrEditUser(user)">
                         编辑 
                     </button> -->
-                    <button type="button" class="btn btn-info btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1" ng-click="addOrEditUser(user)">
+                    <button type="button" class="btn btn-info btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1&&authUser.UserRole.indexOf('businessDirector')===-1" ng-click="addOrEditUser(user)">
                         编辑 
                     </button>
                     <button type="button" class="btn btn-danger btn-xs" ng-disabled="authUser.UserRole.indexOf('Admin')===-1" confirm-required="{{user.userName}}" 
@@ -71,5 +71,5 @@
             </button>
         </div>
     </div>
-{{authUser.UserRole}}
+{{authUser.UserRole.indexOf('Admin')===-1}}
     <pre ng-show="debug">userList:{{userList | json}}</pre>	
